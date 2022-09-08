@@ -1,0 +1,15 @@
+modules:
+  jira:projectPage:
+    - key: motive-metrics-hello-world-project-page
+      resource: main
+      resolver:
+        function: resolver
+      title: motive-metrics
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: static/hello-world/build
+app:
+  id: ari:cloud:ecosystem::app/9e4589ab-6978-4e91-a13b-26054ed47234
