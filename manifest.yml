@@ -6,29 +6,16 @@ modules:
         function: resolver
       title: motive-metrics
   jira:customField:
-    - key: my-field
-      type: number
-      description: The number field
-      name: AAA My Field
     - key:  my-performance-rating
       name: Performance Rating
       description: How would you rate your performance for this issue?
       type: string
       function: my-performance-view
-  jira:customFieldType:
-    - key: my-field-type
-      name: Score
-      description: A score between 0 and 5
-      type: number
-      validation:
-        expression: "value <=5 && value >= 0"
-        message: The value must be between 0 and 5.
-      function: field-renderer    
+      edit:
+        function: my-performance-edit
   function:
     - key: resolver
       handler: index.handler
-    - key: field-renderer
-      handler: index.fieldRenderer
     - key: my-performance-edit
       handler: index.renderPerformanceFieldEdit
     - key: my-performance-view

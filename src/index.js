@@ -17,24 +17,6 @@ resolver.define('getText', (req) => {
     return 'Hello, world!';
 });
 
-const FieldData = () => {
-    const { extensionContext: {fieldValue}} = useProductContext();
-
-    let result = "";
-    for (let i = 0; i < fieldValue; i++) {
-        result += "*";
-    }
-    return (
-        <Text>{result}</Text>
-    );
-}
-
-export const fieldRenderer = render(
-    <CustomField>
-        <FieldData/>
-    </CustomField>
-);
-
 const View = () => {
     const {
         extensionContext: { fieldValue },
