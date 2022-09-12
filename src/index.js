@@ -17,7 +17,7 @@ resolver.define('getText', (req) => {
     return 'Hello, world!';
 });
 
-const View = () => {
+const MyPerformanceView = () => {
     const {
         extensionContext: { fieldValue },
     } = useProductContext();
@@ -31,7 +31,7 @@ const View = () => {
     );
 };
 
-const Edit = () => {
+const MyPerformanceEdit = () => {
     const onSubmit = (formValue) => {
         return formValue.myPerformanceRating;
     }
@@ -49,6 +49,6 @@ const Edit = () => {
     );
 };
 
-export const renderPerformanceFieldView = render(<View />);
-export const renderPerformanceFieldEdit = render(<Edit />);
+export const renderPerformanceFieldView = render(<MyPerformanceView />);
+export const renderPerformanceFieldEdit = render(<MyPerformanceEdit />);
 export const handler = resolver.getDefinitions();
