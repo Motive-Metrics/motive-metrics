@@ -43,7 +43,7 @@ const View = () => {
     return (
         <CustomField>
             <Text>
-                {fieldValue}
+                {fieldValue || 'None'}
             </Text>
         </CustomField>
     );
