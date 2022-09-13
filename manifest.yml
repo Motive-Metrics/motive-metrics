@@ -6,7 +6,7 @@ modules:
         function: resolver
       title: motive-metrics
   jira:customField:
-    - key:  my-performance-rating
+    - key: my-performance-rating
       name: Performance Rating
       description: How would you rate your performance for this issue?
       type: string
@@ -25,3 +25,6 @@ resources:
     path: static/hello-world/build
 app:
   id: ari:cloud:ecosystem::app/9e4589ab-6978-4e91-a13b-26054ed47234
+permissions:
+  scopes:
+    - read:jira-work
