@@ -14,27 +14,28 @@ const resolver = new Resolver();
 
 resolver.define('getText', async (req) => {
     console.log(req);
-    // Below lines retrieves and prints a list containing performanceratings of all issues (REMOVE COMMENT LATER)
-    var jql = `project in (${req.context.extension.project.key})`;
-    const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
-    const data = await response.json();
-    const performanceData = getPerformanceRatings(data);
+    // get data for self performance ratings
+    const performanceData = await getPerformanceRatings(req);
     console.log(performanceData);
 
     return 'Hello, world!!!!!!';
 });
 
-// Function to get a list of issues with the issue key, performance rating & assignee of each issue
-// Will be useful later when working with this data for project page
-function getPerformanceRatings(req) {
+// Function to get the performance ratings of all issues.
+// A list containing object for each issue {issue key, performanceRating, assignee} will be returned.
+// Will be useful later when working with this data for project page (REMOVE COMMENT LATER)
+const getPerformanceRatings = async function(req) {
+    var jql = `project in (${req.context.extension.project.key})`;
+    const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
+    const data = await response.json();
+
     var issuePerformances = [];
     var assigneeName = null;
-    for (var issue of req.issues) {
-        // This handles null assignee value. Try to store displayName if assignee is not null (REMOVE COMMENT LATER)
+    for (var issue of data.issues) {
         if ( issue.fields.assignee ) {
             assigneeName = issue.fields.assignee.displayName;
         }
-        // Not sure why customfield for performance rating is stored under 'customfield_10046', instead of the 'key' used in manifest file (REMOVE COMMENT LATER)
+        // I think forge gives an ID of custom fields created, so have to refer by the ID 'customfield_10046', instead of the 'key' used in manifest file (REMOVE COMMENT LATER)
         issuePerformances.push({
             "key": issue.key,
             "performanceRating": issue.fields.customfield_10046,
