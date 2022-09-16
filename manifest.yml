@@ -24,6 +24,13 @@ modules:
       function: view-motivation
       edit:
         function: edit-motivation
+    - key: my-satisfaction-rating
+      name: Satisfaction Rating
+      description: How would you rate your satisfaction for this issue?
+      type: string
+      function: my-satisfaction-view
+      edit:
+        function: my-satisfaction-edit
   function:
     - key: resolver
       handler: index.handler
@@ -35,7 +42,10 @@ modules:
       handler: motivation.renderViewMotivation
     - key: edit-motivation
       handler: motivation.renderEditMotivation
-
+    - key: my-satisfaction-edit
+      handler: satisfaction.renderSatisfactionFieldEdit
+    - key: my-satisfaction-view
+      handler: satisfaction.renderSatisfactionFieldView
 resources:
   - key: main
     path: static/manager-dashboard/build
