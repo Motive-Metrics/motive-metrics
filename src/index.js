@@ -1,3 +1,4 @@
+import ForgeUI, { render, CustomField, useProductContext, Text, CustomFieldEdit, Range } from '@forge/ui';
 import Resolver from '@forge/resolver';
 import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'

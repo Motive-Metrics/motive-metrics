@@ -13,6 +13,15 @@ modules:
       function: my-performance-view
       edit:
         function: my-performance-edit
+    - key: motivation
+      name: Motivation Score
+      description: Custom field to capture (de)motivating scores & factors).
+      type: object
+      formatter:
+        expression: '`${value.myMotivationRating}`'
+      function: view-motivation
+      edit:
+        function: edit-motivation
   function:
     - key: resolver
       handler: index.handler
@@ -20,6 +29,11 @@ modules:
       handler: performance.renderPerformanceFieldEdit
     - key: my-performance-view
       handler: performance.renderPerformanceFieldView
+    - key: view-motivation
+      handler: index.renderViewMotivation
+    - key: edit-motivation
+      handler: index.renderEditMotivation
+
 resources:
   - key: main
     path: static/hello-world/build
