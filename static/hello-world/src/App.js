@@ -5,9 +5,11 @@ import PieChart from './shared/PieChart';
 
 function App() {
     const [data, setData] = useState(null);
+    const [performanceRatingsData, setPerformanceRatingsData] = useState(null);
 
     useEffect(() => {
         invoke('getText', { example: 'my-invoke-variable' }).then(setData);
+        invoke('getPerformanceRatingsData', { example: 'my-invoke-variable' }).then(setPerformanceRatingsData);
     }, []);
 
     const xData = ['11/11/21', '11/12/21', '11/13/21', '11/14/21', '11/15/21', '11/16/21', '11/18/21'];
@@ -15,7 +17,6 @@ function App() {
 
     const performancePieChartLabels = ['Bad', 'Somewhat Bad', 'Okay', 'Somewhat Good', 'Good'];
     const performancePieChartTitle = 'Performance Ratings';
-    const performanceRatingsData = [12, 19, 3, 5, 2];
 
     return (
         <div>

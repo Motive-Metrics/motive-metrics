@@ -39,7 +39,6 @@ resolver.define('getPerformanceRatings', async (req) => {
 });
 
 // Returns count of performance ratings in the following order: Bad, Somewhat Bad, Okay, Somewhat Good, Good 
-// const getPerformanceRatingsData = async (req) => {
 resolver.define('getPerformanceRatingsData', async (req) => {
     var jql = `project in (${req.context.extension.project.key})`;
     const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
