@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
-import PerformanceBarChart from './Components/Performance';
+import Chart from './shared/Chart';
+import PieChart from './shared/PieChart';
 
 function App() {
     const [data, setData] = useState(null);
@@ -9,6 +10,13 @@ function App() {
         invoke('getText', { example: 'my-invoke-variable' }).then(setData);
     }, []);
 
+    const xData = ['11/11/21', '11/12/21', '11/13/21', '11/14/21', '11/15/21', '11/16/21', '11/18/21'];
+    const colour='rgba(0, 82, 204)'
+
+    const performancePieChartLabels = ['Bad', 'Somewhat Bad', 'Okay', 'Somewhat Good', 'Good'];
+    const performancePieChartTitle = 'Performance Ratings';
+    const performanceRatingsData = [12, 19, 3, 5, 2];
+
     return (
         <div>
             {data ? data : 'Loading Data...'}
@@ -16,10 +24,23 @@ function App() {
                 <p>yo</p>
             </div>
             <div>
-                <PerformanceBarChart/>
+                <Chart
+                    xAxis={xData}
+                    colour={colour}
+                />
             </div>
             <div>
-                <p>Bar Chart should be above ^</p>
+                <p>Chart should be above^</p>
+            </div>
+            <div>
+                <PieChart
+                    labels={performancePieChartLabels}
+                    title={performancePieChartTitle}
+                    dataset={performanceRatingsData}
+                />
+            </div>
+            <div>
+                <p>Pie Chart should be above^</p>
             </div>
         </div>
     );
