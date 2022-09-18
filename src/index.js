@@ -1,13 +1,5 @@
 import Resolver from '@forge/resolver';
-import ForgeUI, { 
-    render,
-    useProductContext,
-    CustomField, 
-    CustomFieldEdit,
-    Option,
-    Select,
-    Text, 
-} from '@forge/ui';
+import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
 
 const resolver = new Resolver();
@@ -17,10 +9,8 @@ resolver.define('getText', async (req) => {
     // get data for self performance ratings
     // const performanceData = await getPerformanceRatings(req);
     // console.log(performanceData);
-    // const data = await getPerformanceRatingsData(req);
-    // console.log(data);
 
-    return 'Hello, world!!';
+    return 'Hello, world!!!!!!';
 });
 
 // Function to get the performance ratings of all issues.
@@ -134,38 +124,4 @@ resolver.define('aaa', async (req) => {
     return output;
 });
 
-const MyPerformanceView = () => {
-    const {
-        extensionContext: { fieldValue },
-    } = useProductContext();
-
-    return (
-        <CustomField>
-            <Text>
-                {fieldValue || 'None'}
-            </Text>
-        </CustomField>
-    );
-};
-
-const MyPerformanceEdit = () => {
-    const onSubmit = (formValue) => {
-        return formValue.myPerformanceRating;
-    }
-
-    return (
-        <CustomFieldEdit onSubmit={onSubmit} header="How would you rate your performance?" width="medium" >
-            <Select label="Select one of the options below to rate your performance" name="myPerformanceRating">
-                <Option label="Bad" value="Bad" />
-                <Option label="Somewhat Bad" value="Somewhat Bad" />
-                <Option label="Okay" value="Okay" />
-                <Option label="Somewhat Good" value="Somewhat Good" />
-                <Option label="Good" value="Good" />
-            </Select>
-        </CustomFieldEdit>
-    );
-};
-
-export const renderPerformanceFieldView = render(<MyPerformanceView />);
-export const renderPerformanceFieldEdit = render(<MyPerformanceEdit />);
 export const handler = resolver.getDefinitions();
