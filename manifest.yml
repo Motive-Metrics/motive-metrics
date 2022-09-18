@@ -17,9 +17,9 @@ modules:
     - key: resolver
       handler: index.handler
     - key: my-performance-edit
-      handler: index.renderPerformanceFieldEdit
+      handler: performance.renderPerformanceFieldEdit
     - key: my-performance-view
-      handler: index.renderPerformanceFieldView
+      handler: performance.renderPerformanceFieldView
 resources:
   - key: main
     path: static/hello-world/build

@@ -1,8 +1,6 @@
 import Resolver from '@forge/resolver';
 import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
-import MyPerformanceView from './Performance/View';
-import MyPerformanceEdit from './Performance/Edit';
 
 const resolver = new Resolver();
 
@@ -40,6 +38,4 @@ const getPerformanceRatings = async function(req) {
     return issuePerformances;
 }
 
-export const renderPerformanceFieldView = render(<MyPerformanceView />);
-export const renderPerformanceFieldEdit = render(<MyPerformanceEdit />);
 export const handler = resolver.getDefinitions();
