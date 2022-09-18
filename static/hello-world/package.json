@@ -6,7 +6,9 @@
   "dependencies": {
     "@atlaskit/css-reset": "^6.0.1",
     "@forge/bridge": "^2.4.0",
+    "chart.js": "^3.9.1",
     "react": "^16.13.1",
+    "react-chartjs-2": "^4.3.1",
     "react-dom": "^16.13.1"
   },
   "scripts": {
