@@ -8,17 +8,23 @@ function App() {
     useEffect(() => {
         invoke('getMotivation', { example: 'my-invoke-variable' }).then(setData);
     }, []);
-    console.log(data);
 
-    const labels = ['11/11/21', '11/12/21', '11/13/21', '11/14/21', '11/15/21', '11/16/21', '11/18/21'];
-    //labels.map(() => Math.floor(Math.random() * 1000))
-    const colour='rgba(0, 82, 204)'
-
+    const labels = [];
+    const dataPoints = [];
+    for (const property in data) {
+        labels.push(property);
+        dataPoints.push(data[`${property}`]);
+    }
+    const borderColour = 'rgba(0, 82, 204)'
+    const backgroundColour = 'rgba(179, 212, 255)'
     return (
         <div>
             <RadarChart
+                name='Motivation'
                 labels={labels}
-                colour={colour}
+                dataPoints={dataPoints}
+                borderColour={borderColour}
+                backgroundColour={backgroundColour}
             />
         </div>
     );

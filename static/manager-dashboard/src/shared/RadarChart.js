@@ -21,19 +21,17 @@ ChartJS.register(
   Legend
 );
 
-const RadarChart = (props) => {
-  
-
-    
+const RadarChart = ({name, labels, dataPoints, borderColour, backgroundColour}) => {
+      
   const data = {
-      labels: props.labels,
+      labels,
       datasets: [
           {
-          label: 'Dataset 1',
-          data: props.labels.map(() => Math.floor(Math.random() * 1000)),
-          borderColor: props.colour,
-          backgroundColor: props.colour,
-          borderWidth: 1,
+          label: name,
+          data: dataPoints,
+          borderColor: borderColour,
+          backgroundColor: backgroundColour,
+          borderWidth: 2,
           },
       ],
   };
