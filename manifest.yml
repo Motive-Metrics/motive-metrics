@@ -30,9 +30,9 @@ modules:
     - key: my-performance-view
       handler: performance.renderPerformanceFieldView
     - key: view-motivation
-      handler: index.renderViewMotivation
+      handler: motivation.renderViewMotivation
     - key: edit-motivation
-      handler: index.renderEditMotivation
+      handler: motivation.renderEditMotivation
 
 resources:
   - key: main
