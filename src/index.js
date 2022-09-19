@@ -1,4 +1,3 @@
-import ForgeUI, { render, CustomField, useProductContext, Text, CustomFieldEdit, Range } from '@forge/ui';
 import Resolver from '@forge/resolver';
 import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
@@ -12,6 +11,15 @@ resolver.define('getText', async (req) => {
     console.log(performanceData);
 
     return 'Hello, world!!!!!!';
+});
+
+
+import EditMotivation from './Motivation/Edit';
+import ViewMotivation from './Motivation/View';
+
+resolver.define('getMotivation', async (req) => {
+    const motivationsCount = await getMotivationRatings(req);
+    return motivationsCount;
 });
 
 // Function to get the performance ratings of all issues.
@@ -38,5 +46,30 @@ const getPerformanceRatings = async function(req) {
     
     return issuePerformances;
 }
+
+const getMotivationRatings = async function(req) {
+    var motivationsCount = {};
+    for (var issue of data.issues) {
+        var issueMotivationField = issue.fields.customfield_10048;
+        for (const property in issueMotivationField) {
+            if (property != 'myMotivationRating' && issueMotivationField[`${property}`]) {
+                const previous = motivationsCount[`${property}`] ? motivationsCount[`${property}`] : 0;
+                motivationsCount[`${property}`] = previous + 1;
+            }
+        }
+    }
+
+    return motivationsCount;
+}
+
+export const renderViewMotivation = render(
+    <ViewMotivation/>
+);
+
+export const renderEditMotivation = render(
+    <EditMotivation/>
+);
+
+
 
 export const handler = resolver.getDefinitions();

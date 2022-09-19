@@ -5,6 +5,12 @@ const EditMotivation = () => {
 
     const onSubmit = (formData) => {
         console.log(formData);
+        formData.challenging = true;
+        formData.interesting = true;
+        formData.important = true;
+        formData.innovative = true;
+        formData.difficult = true;
+        formData.easy = false;
         return formData;
     };
       
