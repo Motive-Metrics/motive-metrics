@@ -21,5 +21,17 @@ resolver.define('getMotivation', async (req) => {
     return motivationsCount;
 });
 
+export const getCustomFieldID = async function (data, targetProperty) {
+    for (var issue of data.issues) {
+        for (var fieldName in issue.fields) {
+            if (issue.fields[fieldName]) {
+                if (issue.fields[fieldName].hasOwnProperty(targetProperty)) {
+                    return fieldName;
+                }
+            }
+        }
+    };
+    return null;
+};
 
 export const handler = resolver.getDefinitions();

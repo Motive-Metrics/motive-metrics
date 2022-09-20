@@ -9,7 +9,9 @@ modules:
     - key: my-performance-rating
       name: Performance Rating
       description: How would you rate your performance for this issue?
-      type: string
+      type: object
+      formatter:
+        expression: '`${value.myPerformanceRating}`'
       function: my-performance-view
       edit:
         function: my-performance-edit

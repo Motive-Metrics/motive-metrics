@@ -1,5 +1,6 @@
 import ForgeUI, { render, CustomField, CustomFieldEdit, Select, Option, useProductContext, Text, StatusLozenge } from '@forge/ui';
-import api, {route} from '@forge/api'
+import api, {route} from '@forge/api';
+import { getCustomFieldID } from './index';
 
 const MyPerformanceView = () => {
     const getLozengeApperance = (rating) => {
@@ -23,10 +24,12 @@ const MyPerformanceView = () => {
         extensionContext: { fieldValue },
     } = useProductContext();
 
+    const output = fieldValue === null ? 'None' : fieldValue.myPerformanceRating;
+
     return (
         <CustomField>
             <Text>
-                <StatusLozenge text={fieldValue || 'None'} appearance={getLozengeApperance(fieldValue)}></StatusLozenge>
+                <StatusLozenge text={output} appearance={getLozengeApperance(output)}></StatusLozenge>
             </Text>
         </CustomField>
     );
@@ -34,7 +37,7 @@ const MyPerformanceView = () => {
 
 const MyPerformanceEdit = () => {
     const onSubmit = (formValue) => {
-        return formValue.myPerformanceRating;
+        return formValue;
     }
 
     return (
@@ -55,10 +58,12 @@ export const getPerformanceRatingsData = async function (req) {
     const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
     const data = await response.json();
 
+    const customFieldID = await getCustomFieldID(data, 'myPerformanceRating');
+
     var issuePerformances = [];
     for (var issue of data.issues) {
-        if ( issue.fields.customfield_10046 ) {
-            issuePerformances.push(issue.fields.customfield_10046);
+        if ( issue.fields[customFieldID].myPerformanceRating ) {
+            issuePerformances.push(issue.fields[customFieldID].myPerformanceRating);
         };
     }
 
