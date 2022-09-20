@@ -1,6 +1,7 @@
 import Resolver from '@forge/resolver';
 import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
+import {getMotivationRatings} from './motivation';
 
 const resolver = new Resolver();
 
@@ -11,6 +12,11 @@ resolver.define('getText', async (req) => {
     console.log(performanceData);
 
     return 'Hello, world!!!!!!';
+});
+
+resolver.define('getMotivation', async (req) => {
+    const motivationsCount = await getMotivationRatings(req);
+    return motivationsCount;
 });
 
 // Function to get the performance ratings of all issues.
