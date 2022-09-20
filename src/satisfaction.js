@@ -33,12 +33,12 @@ const MySatisfactionView = () => {
 
 const MySatisfactionEdit = () => {
   const onSubmit = (formValue) => {
-      return formValue.myPerformanceRating;
+      return formValue.mySatisfactionRating;
   }
 
   return (
       <CustomFieldEdit onSubmit={onSubmit} header="How would you rate your satisfaction of this Issue?" width="medium" >
-          <Select label="Select one of the options below" name="myPerformanceRating">
+          <Select label="Select one of the options below" name="mySatisfactionRating">
               <Option label="Bad" value="Bad" />
               <Option label="Somewhat Bad" value="Somewhat Bad" />
               <Option label="Okay" value="Okay" />
