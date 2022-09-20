@@ -14,16 +14,25 @@ function PerformanceSatisfactionBarChart() {
     const barChartDatasetLabel1 = 'Performance';
     const barChartDatasetLabel2 = 'Satisfaction';
     const satisfactionData = [2, 1, 3, 5, 2]; // replace with actual satisfaction data
+    const dataset = [
+        {
+          label: barChartDatasetLabel1,
+          data: performanceRatingsData,
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        },
+        {
+          label: barChartDatasetLabel2,
+          data: satisfactionData,
+          backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        },
+      ];
 
     return (
         <div>
             <VerticalBarChart
                 text={barChartTitle}
                 xAxisLabels={performancePieChartLabels}
-                dataset1Label={barChartDatasetLabel1}
-                dataSet1={performanceRatingsData}
-                dataset2Label={barChartDatasetLabel2}
-                dataSet2={satisfactionData}
+                dataSet={dataset}
             />
         </div>
     );

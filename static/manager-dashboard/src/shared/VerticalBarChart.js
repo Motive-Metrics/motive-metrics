@@ -20,7 +20,6 @@ ChartJS.register(
 );
 
 const VerticalBarChart = (props) => {
-    //props need: text, xAxisLabels, dataset1Label, dataSet1
     const options = {
         responsive: true,
         plugins: {
@@ -38,18 +37,7 @@ const VerticalBarChart = (props) => {
 
     const data = {
         labels,
-        datasets: [
-          {
-            label: props.dataset1Label,
-            data: props.dataSet1,
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-          },
-          {
-            label: props.dataset2Label,
-            data: props.dataSet2,
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-          },
-        ],
+        datasets: props.dataSet,
     };
     return <Bar options={options} data={data} />;
 }
