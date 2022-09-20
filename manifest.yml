@@ -22,7 +22,7 @@ modules:
       handler: performance.renderPerformanceFieldView
 resources:
   - key: main
-    path: static/hello-world/build
+    path: static/manager-dashboard/build
 app:
   id: ari:cloud:ecosystem::app/9e4589ab-6978-4e91-a13b-26054ed47234
 permissions:
