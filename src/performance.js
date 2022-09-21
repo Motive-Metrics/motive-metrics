@@ -1,4 +1,6 @@
 import ForgeUI, { render, CustomField, CustomFieldEdit, Select, Option, useProductContext, Text, StatusLozenge } from '@forge/ui';
+import api, {route} from '@forge/api';
+import { getCustomFieldID } from './index';
 
 const MyPerformanceView = () => {
     const getLozengeApperance = (rating) => {
@@ -22,10 +24,12 @@ const MyPerformanceView = () => {
         extensionContext: { fieldValue },
     } = useProductContext();
 
+    const output = fieldValue === null ? 'None' : fieldValue.myPerformanceRating;
+
     return (
         <CustomField>
             <Text>
-                <StatusLozenge text={fieldValue || 'None'} appearance={getLozengeApperance(fieldValue)}></StatusLozenge>
+                <StatusLozenge text={output} appearance={getLozengeApperance(output)}></StatusLozenge>
             </Text>
         </CustomField>
     );
@@ -33,7 +37,7 @@ const MyPerformanceView = () => {
 
 const MyPerformanceEdit = () => {
     const onSubmit = (formValue) => {
-        return formValue.myPerformanceRating;
+        return formValue;
     }
 
     return (
@@ -47,6 +51,44 @@ const MyPerformanceEdit = () => {
             </Select>
         </CustomFieldEdit>
     );
+};
+
+export const getPerformanceRatingsData = async function (req) {
+    var jql = `project in (${req.context.extension.project.key})`;
+    const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
+    const data = await response.json();
+
+    const customFieldID = await getCustomFieldID(data, 'myPerformanceRating');
+
+    var issuePerformances = [];
+    for (var issue of data.issues) {
+        if ( issue.fields[customFieldID].myPerformanceRating ) {
+            issuePerformances.push(issue.fields[customFieldID].myPerformanceRating);
+        };
+    }
+
+    var performanceData = [0, 0, 0, 0, 0];
+    for (var rating of issuePerformances) {
+        switch (rating) {
+            case 'Bad':
+                performanceData[0] += 1;
+                break;
+            case 'Somewhat Bad':
+                performanceData[1] += 1;
+                break;
+            case "Okay":
+                performanceData[2] += 1;
+                break;
+            case "Somewhat Good":
+                performanceData[3] += 1
+                break;
+            case "Good":
+                performanceData[4] += 1
+                break;
+        };
+    };
+
+    return performanceData;
 };
 
 export const renderPerformanceFieldEdit = render(<MyPerformanceEdit />);
