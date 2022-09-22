@@ -19,7 +19,7 @@ const ViewMotivation = () => {
 const EditMotivation = () => {
 
     const onSubmit = (formData) => {
-        console.log(formData);
+        formData.motivationScore = false;
         formData.challenging = true;
         formData.interesting = true;
         formData.important = true;
@@ -46,10 +46,23 @@ export const getMotivationRatings = async function(req) {
     var jql = `project in (${req.context.extension.project.key})`;
     const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
     const data = await response.json();
+    var customFieldID;
+    // Find custom field that contains motivation score
+    for (var issue of data.issues) {
+        for (const field in issue.fields) {
+            if (issue.fields[`${field}`] != null && typeof issue.fields[`${field}`] == 'object' && 'motivationScore' in issue.fields[`${field}`]) {
+                customFieldID = field;
+                break;
+            }
+        }
+        if (customFieldID != null) {
+            break;
+        }
+    }
 
     var motivationsCount = {};
     for (var issue of data.issues) {
-        var issueMotivationField = issue.fields.customfield_10048;
+        var issueMotivationField = issue.fields[`${customFieldID}`];
         for (const property in issueMotivationField) {
             if (property != 'myMotivationRating' && issueMotivationField[`${property}`]) {
                 const previous = motivationsCount[`${property}`] ? motivationsCount[`${property}`] : 0;
