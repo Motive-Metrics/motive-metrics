@@ -4,7 +4,7 @@ modules:
       resource: main
       resolver:
         function: resolver
-      title: motive-metrics
+      title: Motive Metrics
   jira:customField:
     - key: my-performance-rating
       name: Performance Rating
@@ -44,3 +44,6 @@ app:
 permissions:
   scopes:
     - read:jira-work
+  content:
+    styles:
+      - unsafe-inline

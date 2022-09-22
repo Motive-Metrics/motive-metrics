@@ -1,10 +1,11 @@
 import React from 'react';
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route,
     Link
 } from "react-router-dom";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ResponsiveAppBar from './shared/ResponsiveAppBar';
 import Motivation from './Components/Motivation';
@@ -12,19 +13,30 @@ import PerformancePieChart from './Components/PerformancePieChart';
 import PerformanceSatisfactionBarChart from './Components/PerformanceSatisfactionBarChart';
 
 function App() {
+    const theme = createTheme({
+        palette: {
+          primary: {
+            main: '#1c1c1c'
+          },
+          secondary: {
+            main: '#504F4F'
+          }
+        }
+      });
+      
     return (
-        <BrowserRouter>
-            <ResponsiveAppBar />
-            <Switch>
-                <Route path="/motivation" exact>
-                    <Motivation/>
-                </Route>
-                <Route path="/performance" exact>
-                    <PerformancePieChart/>
-                    <PerformanceSatisfactionBarChart/>
-                </Route>
-            </Switch>
-        </BrowserRouter>
+        <ThemeProvider theme={theme}>
+            <Router>
+                <ResponsiveAppBar />
+                <Routes>
+                    <Route path="/motivation" element={<Motivation/>}/>
+                    <Route path="/performance" exact>
+                        <PerformancePieChart/>
+                        <PerformanceSatisfactionBarChart/>
+                    </Route>
+                </Routes>
+            </Router>
+        </ThemeProvider>
     );
 }
 
