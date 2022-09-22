@@ -30,10 +30,7 @@ function App() {
                 <ResponsiveAppBar />
                 <Routes>
                     <Route path="/motivation" element={<Motivation/>}/>
-                    <Route path="/performance" exact>
-                        <PerformancePieChart/>
-                        <PerformanceSatisfactionBarChart/>
-                    </Route>
+                    <Route path="/performance" element={<PerformancePieChart/>}/>
                 </Routes>
             </Router>
         </ThemeProvider>
