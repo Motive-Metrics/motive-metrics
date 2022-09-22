@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
 import RadarChart from '../shared/RadarChart';
+import './Motivation.css';
 
 function Motivation() {
     const [data, setData] = useState(null);
@@ -18,7 +19,7 @@ function Motivation() {
     const borderColour = 'rgba(0, 82, 204)'
     const backgroundColour = 'rgba(179, 212, 255)'
     return (
-        <div>
+        <div className='page'>
             <RadarChart
                 name='Motivation'
                 labels={labels}

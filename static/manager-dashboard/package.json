@@ -5,11 +5,16 @@
   "homepage": ".",
   "dependencies": {
     "@atlaskit/css-reset": "^6.0.1",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@forge/bridge": "^2.4.0",
+    "@mui/icons-material": "^5.10.6",
+    "@mui/material": "^5.10.6",
     "chart.js": "^3.9.1",
     "react": "^16.13.1",
     "react-chartjs-2": "^4.3.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^6.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
