@@ -1,6 +1,7 @@
 import ForgeUI, { render, CustomField, useProductContext, Text, CustomFieldEdit, Select, Option, useState } from '@forge/ui';
 import Resolver from '@forge/resolver';
 import api, {route} from '@forge/api'
+import { getCustomFieldID } from './index';
 
 const ViewMotivation = () => {
 
@@ -46,20 +47,9 @@ export const getMotivationRatings = async function(req) {
     var jql = `project in (${req.context.extension.project.key})`;
     const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
     const data = await response.json();
-    var customFieldID;
-    // Find custom field that contains motivation score
-    for (var issue of data.issues) {
-        for (const field in issue.fields) {
-            if (issue.fields[`${field}`] != null && typeof issue.fields[`${field}`] == 'object' && 'motivationScore' in issue.fields[`${field}`]) {
-                customFieldID = field;
-                break;
-            }
-        }
-        if (customFieldID != null) {
-            break;
-        }
-    }
 
+    const customFieldID = await getCustomFieldID(data, 'motivationScore');
+    
     var motivationsCount = {};
     for (var issue of data.issues) {
         var issueMotivationField = issue.fields[`${customFieldID}`];
