@@ -8,23 +8,26 @@ function PersonalityTest() {
     console.log(questions);
 
     const nextQuestion = () => {
-        if (!document.querySelector('input[name="question"]:checked')) {
+        const currentlySelected = document.querySelector('input[name="question"]:checked');
+        if (!currentlySelected) {
             return;
         }
-        questions[currentIndex].value = document.querySelector('input[name="question"]:checked').value;
-        document.querySelector('input[name="question"]:checked').checked = false;
+
+        questions[currentIndex].value = currentlySelected.value;
+        currentlySelected.checked = false;
+
         setCurrentIndex(currentIndex + 1);
         
-        if (questions[currentIndex].value != "") {
-            document.getElementById(questions[currentIndex].value).checked = true;
+        if (questions[currentIndex + 1].value) {
+            document.getElementById(questions[currentIndex + 1].value).checked = true;
         }
     }
 
     const previousQuestion = () => {
         setCurrentIndex(currentIndex - 1);
         
-        if (questions[currentIndex].value != "") {
-            document.getElementById(questions[currentIndex].value).checked = true;
+        if (questions[currentIndex - 1].value) {
+            document.getElementById(questions[currentIndex - 1].value).checked = true;
         }
     }
 
