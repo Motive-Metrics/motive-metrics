@@ -2,7 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
 
 function PersonalityTest() {
+    const [currentIndex, setCurrentIndex] = useState(1);
+    const [questions, setQuestions] = useState([]);
+    const [results, setResults] = useState([]);
 
+    const nextQuestion = () => {
+        if (currentIndex < 121) {
+            setCurrentIndex(currentIndex + 1);
+        }
+    }
+
+    const previousQuestion = () => {
+        if (currentIndex > 1) {
+            setCurrentIndex(currentIndex - 1);
+        }
+    }
+    
     return (
         <div>
             <h2>IPIP 120 Personality Test</h2>
@@ -21,8 +36,8 @@ function PersonalityTest() {
                 <label for="Always">Always</label>
             </div>
 
-            <button id="previous">Previous</button>
-            <button id="next">Next</button>
+            <button id="previous" onClick={previousQuestion}>Previous</button>
+            <button id="next" onClick={nextQuestion}>Next</button>
 
         </div>
     );
