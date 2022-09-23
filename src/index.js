@@ -1,7 +1,7 @@
 import Resolver from '@forge/resolver';
 import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
-import {getPerformanceRatingsData} from './performance';
+import {getPerformanceRatingsData} from './selfPerformance';
 import {getMotivationRatings} from './motivation';
 
 const resolver = new Resolver();
