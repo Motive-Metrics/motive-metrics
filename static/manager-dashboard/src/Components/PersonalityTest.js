@@ -7,6 +7,8 @@ function PersonalityTest() {
     const [questions, setQuestions] = useState([]);
     const [results, setResults] = useState([]);
 
+    console.log(questions);
+
     const nextQuestion = () => {
         if (currentIndex < 121) {
             setCurrentIndex(currentIndex + 1);
@@ -17,10 +19,6 @@ function PersonalityTest() {
         if (currentIndex > 1) {
             setCurrentIndex(currentIndex - 1);
         }
-    }
-    
-    componentDidMount = () => {
-        console.log(questions);
     }
 
     return (
