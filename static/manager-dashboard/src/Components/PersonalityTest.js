@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
+const questions = require('../questions.json');
 
 function PersonalityTest() {
     const [currentIndex, setCurrentIndex] = useState(1);
@@ -18,6 +19,10 @@ function PersonalityTest() {
         }
     }
     
+    componentDidMount = () => {
+        console.log(questions);
+    }
+
     return (
         <div>
             <h2>IPIP 120 Personality Test</h2>
