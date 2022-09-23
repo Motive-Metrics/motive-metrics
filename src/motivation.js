@@ -1,6 +1,7 @@
 import ForgeUI, { render, CustomField, useProductContext, Text, CustomFieldEdit, Select, Option, useState } from '@forge/ui';
 import Resolver from '@forge/resolver';
 import api, {route} from '@forge/api'
+import { getCustomFieldID } from './index';
 
 const ViewMotivation = () => {
 
@@ -19,7 +20,7 @@ const ViewMotivation = () => {
 const EditMotivation = () => {
 
     const onSubmit = (formData) => {
-        console.log(formData);
+        formData.motivationScore = false;
         formData.challenging = true;
         formData.interesting = true;
         formData.important = true;
@@ -47,9 +48,11 @@ export const getMotivationRatings = async function(req) {
     const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
     const data = await response.json();
 
+    const customFieldID = await getCustomFieldID(data, 'motivationScore');
+    
     var motivationsCount = {};
     for (var issue of data.issues) {
-        var issueMotivationField = issue.fields.customfield_10048;
+        var issueMotivationField = issue.fields[`${customFieldID}`];
         for (const property in issueMotivationField) {
             if (property != 'myMotivationRating' && issueMotivationField[`${property}`]) {
                 const previous = motivationsCount[`${property}`] ? motivationsCount[`${property}`] : 0;
