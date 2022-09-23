@@ -3,45 +3,58 @@ import { invoke } from '@forge/bridge';
 const questions = require('../questions.json');
 
 function PersonalityTest() {
-    const [currentIndex, setCurrentIndex] = useState(1);
-    const [questions, setQuestions] = useState([]);
-    const [results, setResults] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     console.log(questions);
 
     const nextQuestion = () => {
-        if (currentIndex < 121) {
-            setCurrentIndex(currentIndex + 1);
+        if (!document.querySelector('input[name="question"]:checked')) {
+            return;
+        }
+        questions[currentIndex].value = document.querySelector('input[name="question"]:checked').value;
+        document.querySelector('input[name="question"]:checked').checked = false;
+        setCurrentIndex(currentIndex + 1);
+        
+        if (questions[currentIndex].value != "") {
+            document.getElementById(questions[currentIndex].value).checked = true;
         }
     }
 
     const previousQuestion = () => {
-        if (currentIndex > 1) {
-            setCurrentIndex(currentIndex - 1);
+        setCurrentIndex(currentIndex - 1);
+        
+        if (questions[currentIndex].value != "") {
+            document.getElementById(questions[currentIndex].value).checked = true;
         }
     }
 
     return (
         <div>
             <h2>IPIP 120 Personality Test</h2>
-            <h3>Question 1</h3>
-            <p> What's your favourite colour? </p>
-            <div>
+            <h3>Question { currentIndex + 1 }</h3>
+            <p> {questions[currentIndex].question } </p>
+            <form id="form">
                 <input type="radio" name="question" value="Never" id="Never"/>
                 <label for="Never">Never</label>
                 <input type="radio" name="question" value="Rarely" id="Rarely"/>
                 <label for="Rarely">Rarely</label>
                 <input type="radio" name="question" value="Sometimes" id="Sometimes"/>
                 <label for="Sometimes">Sometimes</label>
-                <input type="radio" name="question" value="Very Often" id="Often"/>
+                <input type="radio" name="question" value="Often" id="Often"/>
                 <label for="Often">Very Often</label>
                 <input type="radio" name="question" value="Always" id="Always"/>
                 <label for="Always">Always</label>
-            </div>
+            </form>
 
-            <button id="previous" onClick={previousQuestion}>Previous</button>
-            <button id="next" onClick={nextQuestion}>Next</button>
-
+            {currentIndex > 0 &&
+                <button id="previous" onClick={previousQuestion}>Previous</button>
+            }
+            {currentIndex < 119 &&
+                <button id="next" onClick={nextQuestion}>Next</button>
+            }
+            {currentIndex === 119 &&
+                <button id="submit">Submit</button>
+            }
         </div>
     );
 }
