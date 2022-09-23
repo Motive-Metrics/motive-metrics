@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
+const questions = require('../questions.json');
 
 function PersonalityTest() {
+
+    componentDidMount = () => {
+        console.log(questions);
+    }
 
     return (
         <div>
