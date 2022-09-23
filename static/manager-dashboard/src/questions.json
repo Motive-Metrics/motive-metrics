@@ -1,0 +1,722 @@
+[
+    {
+        "question": "I worry about things",
+        "facet": "Anxiety",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I make friends easily",
+        "facet": "Friendliness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I have a vivid imagination",
+        "facet": "Imagination",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I trust others",
+        "facet": "Trust",
+        "domain": "Agreeableness",
+        "key": "+"
+    },
+    {
+        "question": "I complete tasks successfully",
+        "facet": "Self-Efficacy",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I get angry easily",
+        "facet": "Anger",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I love large parties",
+        "facet": "Gregariousness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I believe in the importance of art",
+        "facet": "Aesthetics",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I use others for my own ends",
+        "facet": "Straightforwardness",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I like to tidy up",
+        "facet": "Orderliness",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I often feel blue",
+        "facet": "Depression",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I take charge",
+        "facet": "Assertiveness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I experience my emotions intensely",
+        "facet": "Emotionality",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I love to help others",
+        "facet": "Altruism",
+        "domain": "Agreeableness",
+        "key": "+"
+    },
+    {
+        "question": "I keep my promises",
+        "facet": "Dutifulness",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I find it difficult to approach others",
+        "facet": "Self-Consciousness",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I am always busy",
+        "facet": "Activity",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I prefer variety to routine",
+        "facet": "Adventurousness",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I love a good fight",
+        "facet": "Cooperation",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I work hard",
+        "facet": "Achivement Striving",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I go on binges",
+        "facet": "Impulsiveness",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I love excitement",
+        "facet": "Excitement-Seeking",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I love to read challenging material",
+        "facet": "Intellect",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I believe that I am better than others",
+        "facet": "Modesty",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I am always prepared",
+        "facet": "Self-Discipline",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I panic easily",
+        "facet": "Vulnerability",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I radiate joy",
+        "facet": "Cheerfulness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I tend to vote for liberal political candidates",
+        "facet": "Liberalism",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I sympathise with the homeless",
+        "facet": "Tender-Mindedness",
+        "domain": "Agreeableness",
+        "key": "+"
+    },
+    {
+        "question": "I jump into things without thinking",
+        "facet": "Deliberation",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I fear for the worst",
+        "facet": "Anxiety",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I feel comfortable around people",
+        "facet": "Friendliness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I enjoy wild flights of fantasy",
+        "facet": "Imagination",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I believe that others have good intentions",
+        "facet": "Trust",
+        "domain": "Agreeableness",
+        "key": "+"
+    },
+    {
+        "question": "I excel in what I do",
+        "facet": "Self-Efficacy",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I get irritated easily",
+        "facet": "Anger",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I talk to a lot of different people at parties",
+        "facet": "Gregariousness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I see beauty in things that others might not notice",
+        "facet": "Aesthetics",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I cheat to get ahead",
+        "facet": "Straightforwardness",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I often forgot to put things back in their proper place",
+        "facet": "Orderliness",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I dislike myself",
+        "facet": "Depression",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I try to lead others",
+        "facet": "Assertiveness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I feel othersâ€™ emotions",
+        "facet": "Emotionality",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I am concerned about others",
+        "facet": "Altruism",
+        "domain": "Agreeableness",
+        "key": "+"
+    },
+    {
+        "question": "I tell the truth",
+        "facet": "Dutifulness",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I am afraid to draw attention to myself",
+        "facet": "Self-Consciousness",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I am always on the go",
+        "facet": "Activity",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I prefer to stick with the things that I know",
+        "facet": "Adventurousness",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I yell at people",
+        "facet": "Cooperation",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I do more than whatâ€™s expected of me",
+        "facet": "Achivement Striving",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I rarely overindulge",
+        "facet": "Impulsiveness",
+        "domain": "Neuroticism",
+        "key": "-"
+    },
+    {
+        "question": "I seek adventure",
+        "facet": "Excitement-Seeking",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I avoid philosophical discussions",
+        "facet": "Intellect",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I think highly of myself",
+        "facet": "Modesty",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I carry out my plans",
+        "facet": "Self-Discipline",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I become overwhelmed by events",
+        "facet": "Vulnerability",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I have a lot of fun",
+        "facet": "Cheerfulness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I believe that there is no absolute right or wrong",
+        "facet": "Liberalism",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I feel sympathy for those who are worse off than myself",
+        "facet": "Tender-Mindedness",
+        "domain": "Agreeableness",
+        "key": "+"
+    },
+    {
+        "question": "I make rash decisions",
+        "facet": "Deliberation",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I am afraid of many things",
+        "facet": "Anxiety",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I avoid contacts with others",
+        "facet": "Friendliness",
+        "domain": "Extraversion",
+        "key": "-"
+    },
+    {
+        "question": "I love to daydream",
+        "facet": "Imagination",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I trust what people say",
+        "facet": "Trust",
+        "domain": "Agreeableness",
+        "key": "+"
+    },
+    {
+        "question": "I handle tasks smoothly",
+        "facet": "Self-Efficacy",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I lose my temper",
+        "facet": "Anger",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I prefer to be alone",
+        "facet": "Gregariousness",
+        "domain": "Extraversion",
+        "key": "-"
+    },
+    {
+        "question": "I do not like poetry",
+        "facet": "Aesthetics",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I take advantage of others",
+        "facet": "Straightforwardness",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I leave a mess in my room",
+        "facet": "Orderliness",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I am often down in the dumps",
+        "facet": "Depression",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I take control of things",
+        "facet": "Assertiveness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I rarely notice my emotional reactions",
+        "facet": "Emotionality",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I am indifferent to the feelings of others",
+        "facet": "Altruism",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I break rules",
+        "facet": "Dutifulness",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I only feel comfortable with friends",
+        "facet": "Self-Consciousness",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I do a lot in my spare time",
+        "facet": "Activity",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I dislike changes",
+        "facet": "Adventurousness",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I insult people",
+        "facet": "Cooperation",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I do just enough work to get by",
+        "facet": "Achivement Striving",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I easily resist temptations",
+        "facet": "Impulsiveness",
+        "domain": "Neuroticism",
+        "key": "-"
+    },
+    {
+        "question": "I enjoy being reckless",
+        "facet": "Excitement-Seeking",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I have difficulty understanding abstract ideas",
+        "facet": "Intellect",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I have high opinion of myself",
+        "facet": "Modesty",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I waste my time",
+        "facet": "Self-Discipline",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I feel that Iâ€™m unable to deal with things",
+        "facet": "Vulnerability",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I love life",
+        "facet": "Cheerfulness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I tend to vote for conservative political candidates",
+        "facet": "Liberalism",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I am not interested in other peopleâ€™s problems",
+        "facet": "Tender-Mindedness",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I rush into things",
+        "facet": "Deliberation",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I get stressed out easily",
+        "facet": "Anxiety",
+        "domain": "Neuroticism",
+        "key": "+"
+    },
+    {
+        "question": "I keep others at a distance",
+        "facet": "Friendliness",
+        "domain": "Extraversion",
+        "key": "-"
+    },
+    {
+        "question": "I like to get lost in thought",
+        "facet": "Imagination",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I distrust people",
+        "facet": "Trust",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I know how to get things done",
+        "facet": "Self-Efficacy",
+        "domain": "Conscientiousness",
+        "key": "+"
+    },
+    {
+        "question": "I am not easily annoyed",
+        "facet": "Anger",
+        "domain": "Neuroticism",
+        "key": "-"
+    },
+    {
+        "question": "I avoid crowds",
+        "facet": "Gregariousness",
+        "domain": "Extraversion",
+        "key": "-"
+    },
+    {
+        "question": "I do not enjoy going to art museums",
+        "facet": "Aesthetics",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I obstruct othersâ€™ plans",
+        "facet": "Straightforwardness",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I leave my belongings around",
+        "facet": "Orderliness",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I feel comfortable with myself",
+        "facet": "Depression",
+        "domain": "Neuroticism",
+        "key": "-"
+    },
+    {
+        "question": "I wait for others to lead the way",
+        "facet": "Assertiveness",
+        "domain": "Extraversion",
+        "key": "-"
+    },
+    {
+        "question": "I donâ€™t understand people who get emotional",
+        "facet": "Emotionality",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I take no time for others",
+        "facet": "Altruism",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I break my promises",
+        "facet": "Dutifulness",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I am not bothered by difficult social situations",
+        "facet": "Self-Consciousness",
+        "domain": "Neuroticism",
+        "key": "-"
+    },
+    {
+        "question": "I like to take it easy",
+        "facet": "Activity",
+        "domain": "Extraversion",
+        "key": "-"
+    },
+    {
+        "question": "I am attached to conventional ways",
+        "facet": "Adventurousness",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I get back at others",
+        "facet": "Cooperation",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I put little time and effort into my work",
+        "facet": "Achivement Striving",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I am able to control my cravings",
+        "facet": "Impulsiveness",
+        "domain": "Neuroticism",
+        "key": "-"
+    },
+    {
+        "question": "I act wild and crazy",
+        "facet": "Excitement-Seeking",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I am not interested in theoretical discussions",
+        "facet": "Intellect",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I boast about my virtues",
+        "facet": "Modesty",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I have difficult starting tasks",
+        "facet": "Self-Discipline",
+        "domain": "Conscientiousness",
+        "key": "-"
+    },
+    {
+        "question": "I remain calm under pressure",
+        "facet": "Vulnerability",
+        "domain": "Neuroticism",
+        "key": "-"
+    },
+    {
+        "question": "I look at the bright side of life",
+        "facet": "Cheerfulness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I believe that we should be tough on crime",
+        "facet": "Liberalism",
+        "domain": "Openness To Experience",
+        "key": "-"
+    },
+    {
+        "question": "I try not to think about the needy",
+        "facet": "Tender-Mindedness",
+        "domain": "Agreeableness",
+        "key": "-"
+    },
+    {
+        "question": "I act without thinking",
+        "facet": "Deliberation",
+        "domain": "Conscientiousness",
+        "key": "-"
+    }
+]
