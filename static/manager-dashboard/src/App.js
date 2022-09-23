@@ -11,6 +11,8 @@ import ResponsiveAppBar from './shared/ResponsiveAppBar';
 import Motivation from './Components/Motivation';
 import PerformancePieChart from './Components/PerformancePieChart';
 import PerformanceSatisfactionBarChart from './Components/PerformanceSatisfactionBarChart';
+import PersonalityHomePage from './Components/PersonalityHomePage';
+import PersonalityTest from './Components/PersonalityTest';
 
 function App() {
     const theme = createTheme({
@@ -31,6 +33,8 @@ function App() {
                 <Routes>
                     <Route path="/motivation" element={<Motivation/>}/>
                     <Route path="/performance" element={<PerformancePieChart/>}/>
+                    <Route path="/personality" element={<PersonalityHomePage/>}/>
+                    <Route path="/personality-test" element={<PersonalityTest/>}/>
                 </Routes>
             </Router>
         </ThemeProvider>
