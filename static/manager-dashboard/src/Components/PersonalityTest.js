@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
-const questions = require('../personality.json');
+const questions = require('../temp.json'); //TODO: I commited this for ease of development, change to === 
 
 function PersonalityTest() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [results, setResult] = useState(null);
+    const values = {
+        1: 'Never',
+        2: 'Rarely',
+        3: 'Sometimes',
+        4: 'Often',
+        5: 'Always'
+    }
+
     useEffect(() => {
         if (questions[currentIndex].value) {
-            document.getElementById(questions[currentIndex].value).checked = true;
+            document.getElementById(values[questions[currentIndex].value]).checked = true;
         }
         
     },[currentIndex]);
@@ -73,7 +81,7 @@ function PersonalityTest() {
             {currentIndex < 119 &&
                 <button id="next" onClick={nextQuestion}>Next</button>
             }
-            {currentIndex === 119 &&
+            {currentIndex < 119 && //TODO: I commited this for ease of development, change to === 
                 <button id="submit" onClick={submit}>Submit</button>
             }
         </div>

@@ -3,7 +3,7 @@ import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
 import {getPerformanceRatingsData} from './performance';
 import {getMotivationRatings} from './motivation';
-import {storePersonalityResults, getPersonalityResults} from './personality';
+import {storePersonalityResults, getAllPersonalityResults} from './personality';
 const resolver = new Resolver();
 
 resolver.define('getText', async (req) => {
@@ -25,8 +25,12 @@ resolver.define('storePersonalityResults', async (req) => {
     await storePersonalityResults(req);
 });
 
-resolver.define('getPersonalityResults', async (req) => {
-    return await getPersonalityResults(req);
+resolver.define('getMyPersonalityResults', async (req) => {
+    return await getMyPersonalityResults(req);
+});
+
+resolver.define('getAllPersonalityResults', async (req) => {
+    return await getAllPersonalityResults(req);
 });
 
 export const getCustomFieldID = async function (data, targetProperty) {
