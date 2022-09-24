@@ -6,9 +6,9 @@ import ForgeUI, {
   CustomFieldEdit,
   Select,
   Option,
-  useState,
+  CheckboxGroup,
+  Checkbox,
 } from "@forge/ui";
-import Resolver from "@forge/resolver";
 import api, { route } from "@forge/api";
 import { getCustomFieldID } from "./index";
 
@@ -69,6 +69,8 @@ const deMotivatorsDescription = {
 
 const EditMotivation = () => {
   const onSubmit = (formData) => {
+    console.log(formData.motivators);
+    console.log(formData.deMotivators);
     formData.motivationScore = false;
     formData.challenging = true;
     formData.interesting = true;
@@ -80,23 +82,21 @@ const EditMotivation = () => {
   };
 
   return (
-    <div>
-      <CustomFieldEdit
-        onSubmit={onSubmit}
-        header="Tell us about your motivation?"
-        width="medium"
-      >
-        <Select label="Rate how motivated you were" name="myMotivationRating">
-          <Option label="Low" value="Low" />
-          <Option label="Somewhat Low" value="Somewhat Low" />
-          <Option label="Okay" value="Okay" />
-          <Option label="Somewhat High" value="Somewhat High" />
-          <Option label="High" value="High" />
-        </Select>
-      </CustomFieldEdit>
+    <CustomFieldEdit
+      onSubmit={onSubmit}
+      header="Tell us about your motivation?"
+      width="large"
+    >
+      <Select label="Rate how motivated you were: " name="myMotivationRating">
+        <Option label="Low" value="Low" />
+        <Option label="Somewhat Low" value="Somewhat Low" />
+        <Option label="Okay" value="Okay" />
+        <Option label="Somewhat High" value="Somewhat High" />
+        <Option label="High" value="High" />
+      </Select>
 
       <CheckboxGroup
-        label="Select motivator(s) of this ticket (if any)"
+        label="Select motivator(s) of this ticket (if any): "
         name="motivators"
       >
         <Checkbox value="m1" label={motivatorsDescription.m1} />
@@ -123,7 +123,7 @@ const EditMotivation = () => {
       </CheckboxGroup>
 
       <CheckboxGroup
-        label="Select de-motivator(s) of this ticket (if any)"
+        label="Select de-motivator(s) of this ticket (if any): "
         name="deMotivators"
       >
         <Checkbox value="d1" label={deMotivatorsDescription.d1} />
@@ -142,7 +142,7 @@ const EditMotivation = () => {
         <Checkbox value="d14" label={deMotivatorsDescription.d14} />
         <Checkbox value="d15" label={deMotivatorsDescription.d15} />
       </CheckboxGroup>
-    </div>
+    </CustomFieldEdit>
   );
 };
 
