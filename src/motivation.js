@@ -69,8 +69,12 @@ const deMotivatorsDescription = {
 
 const EditMotivation = () => {
   const onSubmit = (formData) => {
-    console.log(formData.motivators);
-    console.log(formData.deMotivators);
+    // sample-output formData = {
+    //   myMotivationRating: 'Somewhat High',
+    //   motivators: [ 'm1', 'm2', 'm3' ],
+    //   deMotivators: [ 'd1', 'd2', 'd3' ]
+    // }
+
     formData.motivationScore = false;
     formData.challenging = true;
     formData.interesting = true;
