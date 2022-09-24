@@ -27,7 +27,9 @@ modules:
     - key: my-satisfaction-rating
       name: Satisfaction Rating
       description: How would you rate your satisfaction for this issue?
-      type: string
+      type: object
+      formatter:
+        expression: '`${value.mySatisfactionRating}`'
       function: my-satisfaction-view
       edit:
         function: my-satisfaction-edit
