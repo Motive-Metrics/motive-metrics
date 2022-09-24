@@ -126,21 +126,21 @@ const EditMotivation = () => {
         label="Select de-motivator(s) of this ticket (if any)"
         name="deMotivators"
       >
-        <Checkbox value="d1" label={motivatorsDescription.d1} />
-        <Checkbox value="d2" label={motivatorsDescription.d2} />
-        <Checkbox value="d3" label={motivatorsDescription.d3} />
-        <Checkbox value="d4" label={motivatorsDescription.d4} />
-        <Checkbox value="d5" label={motivatorsDescription.d5} />
-        <Checkbox value="d6" label={motivatorsDescription.d6} />
-        <Checkbox value="d7" label={motivatorsDescription.d7} />
-        <Checkbox value="d8" label={motivatorsDescription.d8} />
-        <Checkbox value="d9" label={motivatorsDescription.d9} />
-        <Checkbox value="d10" label={motivatorsDescription.d10} />
-        <Checkbox value="d11" label={motivatorsDescription.d11} />
-        <Checkbox value="d12" label={motivatorsDescription.d12} />
-        <Checkbox value="d13" label={motivatorsDescription.d13} />
-        <Checkbox value="d14" label={motivatorsDescription.d14} />
-        <Checkbox value="d15" label={motivatorsDescription.d15} />
+        <Checkbox value="d1" label={deMotivatorsDescription.d1} />
+        <Checkbox value="d2" label={deMotivatorsDescription.d2} />
+        <Checkbox value="d3" label={deMotivatorsDescription.d3} />
+        <Checkbox value="d4" label={deMotivatorsDescription.d4} />
+        <Checkbox value="d5" label={deMotivatorsDescription.d5} />
+        <Checkbox value="d6" label={deMotivatorsDescription.d6} />
+        <Checkbox value="d7" label={deMotivatorsDescription.d7} />
+        <Checkbox value="d8" label={deMotivatorsDescription.d8} />
+        <Checkbox value="d9" label={deMotivatorsDescription.d9} />
+        <Checkbox value="d10" label={deMotivatorsDescription.d10} />
+        <Checkbox value="d11" label={deMotivatorsDescription.d11} />
+        <Checkbox value="d12" label={deMotivatorsDescription.d12} />
+        <Checkbox value="d13" label={deMotivatorsDescription.d13} />
+        <Checkbox value="d14" label={deMotivatorsDescription.d14} />
+        <Checkbox value="d15" label={deMotivatorsDescription.d15} />
       </CheckboxGroup>
     </div>
   );
