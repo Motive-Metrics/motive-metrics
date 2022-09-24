@@ -60,7 +60,7 @@ const deMotivatorsDescription = {
   d8: "Uncompetitive pay/poor pay/unpaid overtime",
   d9: "Unrealistic goals/phoney deadlines",
   d10: "Bad relationship with users and colleagues",
-  d11: "oor working environment (e.g. wrong staffing levels/unstable/insecure/lacking in investment and resources; being physically separated from team)",
+  d11: "Poor working environment (e.g. wrong staffing levels/unstable/insecure/lacking in investment and resources; being physically separated from team)",
   d12: "Poor management (e.g. poorly conducted meetings that are a waste of time)",
   d13: "Producing poor quality software (no sense of accomplishment)",
   d14: "Poor cultural fit/stereotyping/role ambiguity",
