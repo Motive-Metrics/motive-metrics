@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
-const questions = require('../questions.json');
+const questions = require('../personality.json');
 
 function PersonalityTest() {
     const [currentIndex, setCurrentIndex] = useState(0);
-
+    const [results, setResult] = useState(null);
     useEffect(() => {
         if (questions[currentIndex].value) {
             document.getElementById(questions[currentIndex].value).checked = true;
         }
+        
     },[currentIndex]);
 
     const nextQuestion = () => {
@@ -25,7 +26,7 @@ function PersonalityTest() {
     const previousQuestion = () => {
         setCurrentIndex(currentIndex - 1);
     }
-    
+
     const submit = () => {
         const currentlySelected = document.querySelector('input[name="question"]:checked');
         if (!currentlySelected) {
@@ -39,12 +40,13 @@ function PersonalityTest() {
                 personality[question.domain] = {};
                 personality[question.domain].total = parseInt(0);
             }
-
+            
             const value = parseInt(question.value);
             personality[question.domain].total += question.key === "+" ? value: - value;
             personality[question.domain].facet = question.key === "+" ? value: - value;
         }
         console.log(personality);
+        invoke('storePersonalityResults', { personality });
     }
 
     return (

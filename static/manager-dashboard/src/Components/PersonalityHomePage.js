@@ -4,10 +4,14 @@ import { invoke } from '@forge/bridge';
 
 function PersonalityHomePage() {
     const [personalityTestResult, setPersonalityTestResult] = useState(null);
+    useEffect(() => {
+        invoke('getPersonalityResults').then(setPersonalityTestResult);
+        
+    },[]);
 
-    const onPersonalityTestCompletion = (results) => {
-        setPersonalityTestResult(results);
-    }
+    useEffect(() => {
+        console.log(personalityTestResult);
+    },[personalityTestResult]);
 
     return (
         <div>
