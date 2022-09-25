@@ -189,10 +189,10 @@ export const getMotivationRatings = async function (req) {
       issueMotivationField.motivators.length > 0
     ) {
       for (var motivator of issueMotivationField.motivators) {
-        if (motivationsCount.motivators[motivator]) {
-          motivationsCount.motivators[motivator] += 1;
+        if (motivationsCount.motivators[`${motivator}`]) {
+          motivationsCount.motivators[`${motivator}`] += 1;
         } else {
-          motivationsCount.motivators[motivator] = 1;
+          motivationsCount.motivators[`${motivator}`] = 1;
         }
       }
     }
@@ -202,10 +202,10 @@ export const getMotivationRatings = async function (req) {
       issueMotivationField.deMotivators.length > 0
     ) {
       for (var deMotivator of issueMotivationField.deMotivators) {
-        if (motivationsCount.deMotivators[deMotivator]) {
-          motivationsCount.deMotivators[deMotivator] += 1;
+        if (motivationsCount.deMotivators[`${deMotivator}`]) {
+          motivationsCount.deMotivators[`${deMotivator}`] += 1;
         } else {
-          motivationsCount.deMotivators[deMotivator] = 1;
+          motivationsCount.deMotivators[`${deMotivator}`] = 1;
         }
       }
     }
