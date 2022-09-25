@@ -29,7 +29,15 @@ modules:
       description: How would you rate the assignee's performance for this issue?
       type: object
       formatter:
-        expression: '`${value.peerAssessedPerformanceRating}`'
+        expression: "'`${value.accountId}` `${value.peerAssessedPerformanceRating}`'"
+      schema:
+        properties:
+          accountId:
+            type: string
+            searchAlias: accountId
+          peerAssessedPerformanceRating:
+            type: string
+            searchAlias: peerAssessedPerformanceRating
       function: peer-performance-view
       edit:
         function: peer-performance-edit
@@ -56,6 +64,7 @@ app:
 permissions:
   scopes:
     - read:jira-work
+    - write:jira-work
   content:
     styles:
       - unsafe-inline
