@@ -18,8 +18,35 @@ const PeerAssessedPerformanceView = () => {
     };
 
     // If ID of current user logged in does not exist in return value, then display “Peer assess performance”
+    const [fieldData] = useState(getPeerAssessedPerformanceData(issueKey));
+    var accounts;
+    var ratings;
 
-    // Else, display the rating as a StatusLozenge
+    if (fieldData === null || typeof fieldData === 'undefined') {
+        accounts = [];
+        ratings = [];
+    }
+    else {
+        accounts = fieldData.accountId;
+        ratings = fieldData.peerAssessedPerformanceRating;
+    };
+
+    var exists = false;
+    var counter = 0;
+    for (let i = 0; i < accounts.length; i++) {
+        if (accounts[i] == accountId) {
+            exists = true;
+            counter = i;
+        }
+    }
+
+    if (!exists) {
+        return (
+            <CustomField>
+                <Text>Peer assess performance!</Text>
+            </CustomField>
+        )
+    }
     
     const getLozengeApperance = (rating) => {
         switch (rating) {
@@ -42,7 +69,8 @@ const PeerAssessedPerformanceView = () => {
         extensionContext: { fieldValue },
     } = useProductContext();
 
-    const output = fieldValue === null ? 'None' : fieldValue.peerAssessedPerformanceRating;
+    const output = fieldValue === null ? 'None' : fieldValue.peerAssessedPerformanceRating[counter];
+    
 
     return (
         <CustomField>
@@ -53,30 +81,33 @@ const PeerAssessedPerformanceView = () => {
     );
 };
 
-
 const PeerAssessedPerformanceEdit = () => {
-    // get current ID
-    const {platformContext: {issueKey}} = useProductContext();
-    // console.log(issueKey);
-
-    const [assigneeId] = useState(getIssueAssigneeID(issueKey));
-    // console.log(assigneeId);
     
+    const {platformContext: {issueKey}} = useProductContext();
+    const [assigneeId] = useState(getIssueAssigneeID(issueKey));
     const {accountId} = useProductContext();
-    // console.log(accountId);
+    const [fieldData] = useState(getPeerAssessedPerformanceData(issueKey));
 
-    // If current user is the assignee, don't let them peer assess. Need to return CustomFieldEdit in here though
+    // If current user is the assignee, keep return data the same
     if (accountId == assigneeId) {
-        
         const onSubmit = (formValue) => {
-            
-            console.log(formValue);
-            // Need to return something, currently returning -1 with this usersId.  
-            return {
-                "accountId": accountId,
-                "peerAssessedPerformanceRating": '-1'
+            var accounts;
+            var ratings;
+
+            // if first time peer rating performance for this issue, set properties to empty array
+            if (fieldData === null || typeof fieldData === 'undefined') {
+                accounts = [];
+                ratings = [];
+            }
+            else {
+                accounts = fieldData.accountId;
+                ratings = fieldData.peerAssessedPerformanceRating;
             };
-        }
+            return {
+                "accountId": accounts,
+                "peerAssessedPerformanceRating": ratings
+            };
+        };
         
         return (
             <CustomFieldEdit onSubmit={onSubmit} header="How would you rate the performance of your peer?" width="medium" >
@@ -87,15 +118,38 @@ const PeerAssessedPerformanceEdit = () => {
 
     // Else, let user rate performance like self assessment 
     const onSubmit = (formValue) => {
-        // Right now only 1 Object is stored. Need to update to be a list.
-
-        // Need to iterate list and check if accountId exists in list
-        // If ID exists, update teh performance rating value
-        // Else, push a new object for this user
         
+        var accounts;
+        var ratings;
+
+        // if first time peer rating performance for this issue, set properties to empty array
+        if (fieldData === null || typeof fieldData === 'undefined') {
+            accounts = [];
+            ratings = [];
+        }
+        else {
+            accounts = fieldData.accountId;
+            ratings = fieldData.peerAssessedPerformanceRating;
+        };
+
+        // If user already rated performance, update thier previous rating
+        var exists = false;
+        for (let i = 0; i < accounts.length; i++) {
+            if (accounts[i] == accountId) {
+                ratings[i] = formValue.myPerformanceRating;
+                exists = true;
+            }
+        }
+
+        // If user has not rated performance before, add their rating
+        if (!exists) {
+            accounts.push(accountId);
+            ratings.push(formValue.myPerformanceRating);
+        }
+
         return {
-            "accountId": accountId,
-            "peerAssessedPerformanceRating": formValue.myPerformanceRating
+            "accountId": accounts,
+            "peerAssessedPerformanceRating": ratings
         };
     }
 
@@ -122,6 +176,24 @@ const getIssueAssigneeID = async function (issueKey) {
     }
     
     return assigneeId;
+};
+
+const getPeerAssessedPerformanceData = async function (issueKey) {
+    const response = await api.asApp().requestJira(route`/rest/api/3/issue/${issueKey}`);
+    const data = await response.json();
+    const customFieldID = await getPeerPerformanceCustomFieldID(data, 'peerAssessedPerformanceRating');
+    return data.fields[customFieldID];
+};
+
+const getPeerPerformanceCustomFieldID = async function (data, targetProperty) {
+    for (var fieldName in data.fields) {
+        if (data.fields[fieldName]) {
+            if (data.fields[fieldName].hasOwnProperty(targetProperty)) {
+                return fieldName;
+            }
+        }
+    };
+    return null;
 };
 
 export const getPeerAssessedPerformanceRatings = async function (req) {

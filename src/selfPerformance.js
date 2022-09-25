@@ -62,7 +62,7 @@ export const getPerformanceRatingsData = async function (req) {
 
     var issuePerformances = [];
     for (var issue of data.issues) {
-        if ( issue.fields[customFieldID].myPerformanceRating ) {
+        if ( issue.fields[customFieldID] && issue.fields[customFieldID].myPerformanceRating ) {
             issuePerformances.push(issue.fields[customFieldID].myPerformanceRating);
         };
     }

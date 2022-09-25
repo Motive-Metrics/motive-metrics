@@ -30,14 +30,6 @@ modules:
       type: object
       formatter:
         expression: "'`${value.accountId}` `${value.peerAssessedPerformanceRating}`'"
-      schema:
-        properties:
-          accountId:
-            type: string
-            searchAlias: accountId
-          peerAssessedPerformanceRating:
-            type: string
-            searchAlias: peerAssessedPerformanceRating
       function: peer-performance-view
       edit:
         function: peer-performance-edit
