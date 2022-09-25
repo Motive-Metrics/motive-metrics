@@ -67,7 +67,7 @@ function Motivation() {
   const motivatorLabels = [];
   const motivatorDataPoints = [];
 
-  console.log("data: ", data);
+  console.log("data: ", data); // data is empty here
 
   for (const property in data.motivators) {
     motivatorLabels.push(motivatorsLabelEnum.property); // push the label of motivators from enum
