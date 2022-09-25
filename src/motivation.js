@@ -75,77 +75,14 @@ const deMotivatorsDescription = {
   d15: "Lack of influence/not involved in decision making/no voice",
 };
 
-/**
- * Title of motivators, to show in the radar chart.
- * @enum {string}
- */
-const motivatorsTitle = {
-  m1: "Rewards and incentives",
-  m2: "Development needs addressed",
-  m3: "Variety of work",
-  m4: "Career path",
-  m5: "Empowerment",
-  m6: "Good management",
-  m7: "Sense of belonging",
-  m8: "Work/life balance",
-  m9: "Working in successful company",
-  m10: "Employee involvement",
-  m11: "Feedback",
-  m12: "Recognition",
-  m13: "Equity",
-  m14: "Trust",
-  m15: "Technically challenging work",
-  m16: "Job security",
-  m17: "Identify with the task",
-  m18: "Autonomy",
-  m19: "Appropriate working conditions",
-  m20: "Task significance",
-  m21: "Sufficient resources",
-};
-
-/**
- * Title of de-motivators, to show in the radar chart.
- * @enum {string}
- */
-const deMotivatorsTitle = {
-  d1: "Risk",
-  d2: "Stress",
-  d3: "Inequity",
-  d4: "Interesting work going to other parties",
-  d5: "Unfair reward system",
-  d6: "Lack of promotion opportunities",
-  d7: "Poor communication",
-  d8: "Uncompetitive pay",
-  d9: "Unrealistic goals",
-  d10: "Bad relationship with users and colleagues",
-  d11: "Poor working environment",
-  d12: "Poor management",
-  d13: "Producing poor quality software",
-  d14: "Poor cultural fit",
-  d15: "Lack of influence",
-};
-
 const EditMotivation = () => {
   /**
+   * Process form data and return
    * @param {*} formData
-   *    sample formData = {
-   *      myMotivationRating: 'Somewhat High',
-   *      motivators: [ 'm1', 'm2', 'm3' ],
-   *      deMotivators: [ 'd1', 'd2', 'd3' ]
-   *    }
-   * @returns
+   * @returns {Object} formData + a motivationScore
    */
   const onSubmit = (formData) => {
-    // motivation score
     formData.motivationScore = false;
-
-    // motivators
-    formData.challenging = true;
-    formData.interesting = true;
-    formData.important = true;
-    formData.innovative = true;
-    formData.difficult = true;
-    formData.easy = false;
     return formData;
   };
 
@@ -214,7 +151,14 @@ const EditMotivation = () => {
   );
 };
 
+/**
+ * Function to get the motivators and de-motivators count from custom fields for radar chart.
+ * @param {*} req
+ * @returns {Object} motivators and de-motivators count as nested object
+ */
 export const getMotivationRatings = async function (req) {
+  console.log("getMotivationRatings is being called");
+
   var jql = `project in (${req.context.extension.project.key})`;
   const response = await api
     .asApp()
@@ -223,22 +167,50 @@ export const getMotivationRatings = async function (req) {
 
   const customFieldID = await getCustomFieldID(data, "motivationScore");
 
-  var motivationsCount = {};
+  var motivationsCount = {
+    motivators: {},
+    deMotivators: {},
+  };
+  console.log("motivation count initialisation: ", motivationsCount);
+
   for (var issue of data.issues) {
+    //  Example: issueMotivationField  = {
+    //   myMotivationRating: 'Low',
+    //   motivators: [ 'm1', 'm2', 'm3' ],
+    //   deMotivators: ['d2', 'd5'],
+    //   motivationScore: false
+    //  }
     var issueMotivationField = issue.fields[`${customFieldID}`];
-    for (const property in issueMotivationField) {
-      if (
-        property != "myMotivationRating" &&
-        issueMotivationField[`${property}`]
-      ) {
-        const previous = motivationsCount[`${property}`]
-          ? motivationsCount[`${property}`]
-          : 0;
-        motivationsCount[`${property}`] = previous + 1;
+
+    if (
+      issueMotivationField.motivators &&
+      issueMotivationField.motivators.length > 0
+    ) {
+      for (var motivator of issueMotivationField.motivators) {
+        if (motivationsCount.motivators[motivator]) {
+          motivationsCount.motivators[motivator] += 1;
+        } else {
+          motivationsCount.motivators[motivator] = 1;
+        }
+      }
+    }
+
+    if (
+      issueMotivationField.deMotivators &&
+      issueMotivationField.deMotivators.length > 0
+    ) {
+      for (var deMotivator of issueMotivationField.deMotivators) {
+        if (motivationsCount.deMotivators[deMotivator]) {
+          motivationsCount.deMotivators[deMotivator] += 1;
+        } else {
+          motivationsCount.deMotivators[deMotivator] = 1;
+        }
       }
     }
   }
 
+  console.log("motivationCount", motivationsCount);
+  // Example: motivationsCount = { motivators: {m1: 1, m2: 2, m3: 1}, deMotivators:{d1:6, d2: 1}}
   return motivationsCount;
 };
 
