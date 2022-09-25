@@ -84,7 +84,7 @@ const EditMotivation = () => {
    * @returns {Object} formData + a motivationScore
    */
   const onSubmit = (formData) => {
-    formData.motivationScore = false;
+    formData.motivationScore = false; //required to find this custom field
     return formData;
   };
 
@@ -159,7 +159,7 @@ const EditMotivation = () => {
  * @returns {Object} motivators and de-motivators count as nested object
  */
 export const getMotivationRatings = async function (req) {
-  console.log("getMotivationRatings is being called");
+  console.log("getMotivationRatings is being called"); // not calling???
 
   var jql = `project in (${req.context.extension.project.key})`;
   const response = await api
@@ -167,13 +167,13 @@ export const getMotivationRatings = async function (req) {
     .requestJira(route`/rest/api/3/search?${jql}`);
   const data = await response.json();
 
-  const customFieldID = await getCustomFieldID(data, "motivationScore");
+  const customFieldID = await getCustomFieldID(data, "motivationScore"); // motivationScore attr is used to find the field
 
   var motivationsCount = {
     motivators: {},
     deMotivators: {},
   };
-  console.log("motivation count initialisation: ", motivationsCount);
+  console.log("motivation count initialised: ", motivationsCount);
 
   for (var issue of data.issues) {
     //  Example: issueMotivationField  = {
