@@ -60,34 +60,30 @@ export const getPerformanceRatingsData = async function (req) {
 
     const customFieldID = await getCustomFieldID(data, 'myPerformanceRating');
 
-    var issuePerformances = [];
+    var performanceData = [0, 0, 0, 0, 0];
     for (var issue of data.issues) {
         if ( issue.fields[customFieldID] && issue.fields[customFieldID].myPerformanceRating ) {
-            issuePerformances.push(issue.fields[customFieldID].myPerformanceRating);
+            var rating = issue.fields[customFieldID].myPerformanceRating;
+            switch (rating) {
+                case 'Bad':
+                    performanceData[0] += 1;
+                    break;
+                case 'Somewhat Bad':
+                    performanceData[1] += 1;
+                    break;
+                case "Okay":
+                    performanceData[2] += 1;
+                    break;
+                case "Somewhat Good":
+                    performanceData[3] += 1
+                    break;
+                case "Good":
+                    performanceData[4] += 1
+                    break;
+            };
         };
     }
-
-    var performanceData = [0, 0, 0, 0, 0];
-    for (var rating of issuePerformances) {
-        switch (rating) {
-            case 'Bad':
-                performanceData[0] += 1;
-                break;
-            case 'Somewhat Bad':
-                performanceData[1] += 1;
-                break;
-            case "Okay":
-                performanceData[2] += 1;
-                break;
-            case "Somewhat Good":
-                performanceData[3] += 1
-                break;
-            case "Good":
-                performanceData[4] += 1
-                break;
-        };
-    };
-
+    
     return performanceData;
 };
 
