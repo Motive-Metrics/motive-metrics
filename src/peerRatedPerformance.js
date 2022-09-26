@@ -202,16 +202,18 @@ export const getPeerAssessedPerformanceRatings = async function (req) {
     const data = await response.json();
 
     const customFieldID = await getCustomFieldID(data, 'peerAssessedPerformanceRating');
-
-    var issuePerformances = [];
+    
+    var peerAssessedRatings = [];
     for (var issue of data.issues) {
-        if ( issue.fields[customFieldID].peerAssessedPerformanceRating ) {
-            issuePerformances.push(issue.fields[customFieldID].peerAssessedPerformanceRating);
+        if ( issue.fields[customFieldID] && issue.fields[customFieldID].peerAssessedPerformanceRating ) {
+            for (var rating of issue.fields[customFieldID].peerAssessedPerformanceRating ) { 
+                peerAssessedRatings.push(rating);
+            }
         };
     }
-
+    
     var performanceData = [0, 0, 0, 0, 0];
-    for (var rating of issuePerformances) {
+    for (var rating of peerAssessedRatings) {
         switch (rating) {
             case 'Bad':
                 performanceData[0] += 1;
