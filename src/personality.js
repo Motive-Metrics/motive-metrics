@@ -2,22 +2,12 @@ import { storage } from '@forge/api';
 import api, { route } from '@forge/api'
 
 export const storePersonalityResults = function(req) {
-    console.log(req);
-    return api.asApp().requestJira(route`/rest/api/3/myself`, {
-        headers: {
-          'Accept': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(user => {
-        const storeData = {
-            name: user.displayName,
-            personality: req.payload.personality
-        }
-        console.log("OOO: " + user.accountId);
-        return storage.set(user.accountId, storeData);
-        }
-    );
+    console.log('storePersonalityResults', req.payload.accountId);
+    const storeData = {
+        accountId: req.payload.accountId,
+        personality: req.payload.personality
+    }
+    return storage.set(req.payload.accountId, storeData);
 }
 
 export const getMyPersonalityResults = function(req) {
@@ -39,13 +29,10 @@ export const getAllPersonalityResults = function(req) {
     .then(response => response.json())
     .then(async users => {
         const allUserPersonalities = [];
-        //console.log(users);
         for (const user of users) {
-            //console.log("Apple: " + user.accountId);
             let storedData = await storage.get(user.accountId);
-            //console.log("Banana: " + storedData);
             if (storedData != null) {
-                console.log("Banana: " + storedData);
+                console.log('retrieved user: ' + user.accountId);
                 allUserPersonalities.push(storedData);
             }
         }

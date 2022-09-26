@@ -3,26 +3,36 @@ import { invoke } from '@forge/bridge';
 import ScatterChart from '../shared/ScatterChart';
 
 function PersonalityChart() {
-    const [users, setUsers] = useState([]);
     const [domain, setDomain] = useState('Neuroticism');
-
+    const [dataPoints, setDataPoints] = useState([]);
+    let users;
+    let averageMotivations;
     useEffect(() => {
-        invoke('getAllPersonalityResults').then(setUsers);
-    }, []);
-
-    const dataPoints = [];
-    for (const user of users) {
-        console.log('----------------------------------------------------------------\n');
-        console.log(user);
-        console.log('----------------------------------------------------------------\n');
-        console.log(user.personality);
-        if (user.hasOwnProperty('personality')) {
-            dataPoints.push({
-                x: user.personality.Neuroticism.total,
-                y: 3 //invoke('getUsersAverageMotivation')
-            });
+        const fetchMotivation = async () => {
+            users = await invoke('getAllPersonalityResults');
+            averageMotivations = await invoke('getAllAverageMotivation');
+            for (const property in users) {
+                console.log(property + ': ' + users[property].accountId);
+            }
+            for (const property in averageMotivations) {
+                console.log(property + ': ' + averageMotivations[property]);
+            }
+            const data = [];
+            for (const user of users) {
+                console.log(averageMotivations.hasOwnProperty(user.accountId));
+                if (user.hasOwnProperty('personality') && averageMotivations.hasOwnProperty(user.accountId)) {
+                    console.log('AverageMotivation: ' + averageMotivations[user.accountId]);
+                    data.push({
+                        x: user.personality.Neuroticism.total,
+                        y: averageMotivations[user.accountId]
+                    });
+                }
+            }
+            setDataPoints(data);
         }
-    }
+
+        fetchMotivation();
+    }, []);
 
     const data = {
         datasets: [

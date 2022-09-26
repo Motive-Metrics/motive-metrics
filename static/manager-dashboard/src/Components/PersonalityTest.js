@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { invoke } from '@forge/bridge';
+import { invoke, view } from '@forge/bridge';
 const questions = require('../temp.json'); //TODO: I commited this for ease of development, change to === 
 
 function PersonalityTest() {
@@ -35,7 +35,7 @@ function PersonalityTest() {
         setCurrentIndex(currentIndex - 1);
     }
 
-    const submit = () => {
+    const submit = async () => {
         const currentlySelected = document.querySelector('input[name="question"]:checked');
         if (!currentlySelected) {
             return;
@@ -53,8 +53,8 @@ function PersonalityTest() {
             personality[question.domain].total += question.key === "+" ? value: - value;
             personality[question.domain].facet = question.key === "+" ? value: - value;
         }
-        console.log(personality);
-        invoke('storePersonalityResults', { personality });
+        const context = await view.getContext();
+        invoke('storePersonalityResults', { personality, accountId: context.accountId });
     }
 
     return (

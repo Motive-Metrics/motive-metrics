@@ -2,7 +2,7 @@ import Resolver from '@forge/resolver';
 import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
 import {getPerformanceRatingsData} from './performance';
-import {getMotivationRatings} from './motivation';
+import {getMotivationRatings, getAllAverageMotivation} from './motivation';
 import {storePersonalityResults, getAllPersonalityResults} from './personality';
 const resolver = new Resolver();
 
@@ -21,6 +21,12 @@ resolver.define('getMotivation', async (req) => {
     return motivationsCount;
 });
 
+resolver.define('getAllAverageMotivation', async (req) => {
+    const averageMotivation = await getAllAverageMotivation(req);
+    return averageMotivation;
+});
+
+
 resolver.define('storePersonalityResults', async (req) => {
     await storePersonalityResults(req);
 });
@@ -32,6 +38,7 @@ resolver.define('getMyPersonalityResults', async (req) => {
 resolver.define('getAllPersonalityResults', async (req) => {
     return await getAllPersonalityResults(req);
 });
+
 
 export const getCustomFieldID = async function (data, targetProperty) {
     for (var issue of data.issues) {
