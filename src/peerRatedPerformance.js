@@ -198,6 +198,7 @@ const getPeerPerformanceCustomFieldID = async function (data, targetProperty) {
 
 export const getPeerAssessedPerformanceRatings = async function (req) {
     var jql = `project in (${req.context.extension.project.key})`;
+    var projectId = req.context.extension.project.id;
     const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
     const data = await response.json();
 
@@ -206,24 +207,27 @@ export const getPeerAssessedPerformanceRatings = async function (req) {
     var performanceData = [0, 0, 0, 0, 0];
     for (var issue of data.issues) {
         if ( issue.fields[customFieldID] && issue.fields[customFieldID].peerAssessedPerformanceRating ) {
-            for (var rating of issue.fields[customFieldID].peerAssessedPerformanceRating ) { 
-                switch (rating) {
-                    case 'Bad':
-                        performanceData[0] += 1;
-                        break;
-                    case 'Somewhat Bad':
-                        performanceData[1] += 1;
-                        break;
-                    case "Okay":
-                        performanceData[2] += 1;
-                        break;
-                    case "Somewhat Good":
-                        performanceData[3] += 1
-                        break;
-                    case "Good":
-                        performanceData[4] += 1
-                        break;
-                };
+            if (projectId == issue.fields.project.id) {
+                console.log("found an issue with matching project id");
+                for (var rating of issue.fields[customFieldID].peerAssessedPerformanceRating ) { 
+                    switch (rating) {
+                        case 'Bad':
+                            performanceData[0] += 1;
+                            break;
+                        case 'Somewhat Bad':
+                            performanceData[1] += 1;
+                            break;
+                        case "Okay":
+                            performanceData[2] += 1;
+                            break;
+                        case "Somewhat Good":
+                            performanceData[3] += 1
+                            break;
+                        case "Good":
+                            performanceData[4] += 1
+                            break;
+                    };
+                }
             }
         };
     }
