@@ -12,6 +12,7 @@ import Motivation from './Components/Motivation';
 import PersonalityPage from './Components/PersonalityPage';
 import PersonalityTest from './Components/PersonalityTest';
 import Performance from './Components/Performance';
+import PerformanceSatisfactionBarChart from './Components/PerformanceSatisfactionBarChart';
 
 function App() {
     const theme = createTheme({
@@ -34,6 +35,7 @@ function App() {
                     <Route path="/personality" element={<PersonalityPage/>}/>
                     <Route path="/test" element={<PersonalityTest/>}/>
                     <Route path="/performance" element={<Performance/>}/>
+                    <Route path="/satisfaction" element={<SatisfactionPieChart/>}/>
                 </Routes>
             </Router>
         </ThemeProvider>

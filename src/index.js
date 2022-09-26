@@ -85,6 +85,11 @@ resolver.define('getAllPersonalityResults', async (req) => {
 });
 
 
+resolver.define('getSatisfactionRatingsData', async (req) => {
+    const performanceData = await getSatisfactionRatingsData(req);
+    return performanceData;
+});
+
 export const getCustomFieldID = async function (data, targetProperty) {
     for (var issue of data.issues) {
         for (var fieldName in issue.fields) {
