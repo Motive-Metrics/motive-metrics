@@ -155,7 +155,7 @@ const PeerAssessedPerformanceEdit = () => {
 
     return (
         <CustomFieldEdit onSubmit={onSubmit} header="How would you rate the performance of your peer?" width="medium" >
-            <Select label="Select one of the options below to rate your performance" name="myPerformanceRating">
+            <Select label="Select one of the options below to rate the performance of your peer." name="myPerformanceRating">
                 <Option label="Bad" value="Bad" />
                 <Option label="Somewhat Bad" value="Somewhat Bad" />
                 <Option label="Okay" value="Okay" />
@@ -211,7 +211,7 @@ export const getPeerAssessedPerformanceRatings = async function (req) {
             }
         };
     }
-    
+
     var performanceData = [0, 0, 0, 0, 0];
     for (var rating of peerAssessedRatings) {
         switch (rating) {
