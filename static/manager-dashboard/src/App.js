@@ -34,7 +34,7 @@ function App() {
                     <Route path="/motivation" element={<Motivation/>}/>
                     <Route path="/performance" element={<PerformancePieChart/>}/>
                     <Route path="/personality" element={<PersonalityHomePage/>}/>
-                    <Route path="/personality-test" element={<PersonalityTest/>}/>
+                    <Route path="/test" element={<PersonalityTest/>}/>
                 </Routes>
             </Router>
         </ThemeProvider>

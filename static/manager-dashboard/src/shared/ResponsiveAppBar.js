@@ -28,7 +28,7 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  const pages = ['Performance', 'Satisfaction', 'Motivation', 'Personality'];
+  const pages = ['Test', 'Performance', 'Satisfaction', 'Motivation', 'Personality'];
 
   return (
     <AppBar position="static" color="primary" style={{boxShadow: 'none'}}>
