@@ -37,6 +37,7 @@ const PeerAssessedPerformanceView = () => {
         if (accounts[i] == accountId) {
             exists = true;
             counter = i;
+            break;
         }
     }
 
@@ -131,20 +132,21 @@ const PeerAssessedPerformanceEdit = () => {
             accounts = fieldData.accountId;
             ratings = fieldData.peerAssessedPerformanceRating;
         };
-
+        
         // If user already rated performance, update thier previous rating
         var exists = false;
         for (let i = 0; i < accounts.length; i++) {
             if (accounts[i] == accountId) {
-                ratings[i] = formValue.myPerformanceRating;
+                ratings[i] = formValue.myPeerPerformanceRating;
                 exists = true;
+                break;
             }
         }
 
         // If user has not rated performance before, add their rating
         if (!exists) {
             accounts.push(accountId);
-            ratings.push(formValue.myPerformanceRating);
+            ratings.push(formValue.myPeerPerformanceRating);
         }
 
         return {
@@ -155,7 +157,7 @@ const PeerAssessedPerformanceEdit = () => {
 
     return (
         <CustomFieldEdit onSubmit={onSubmit} header="How would you rate the performance of your peer?" width="medium" >
-            <Select label="Select one of the options below to rate the performance of your peer." name="myPerformanceRating">
+            <Select label="Select one of the options below to rate the performance of your peer." name="myPeerPerformanceRating">
                 <Option label="Bad" value="Bad" />
                 <Option label="Somewhat Bad" value="Somewhat Bad" />
                 <Option label="Okay" value="Okay" />
