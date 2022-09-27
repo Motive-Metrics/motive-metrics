@@ -33,6 +33,15 @@ modules:
       function: peer-performance-view
       edit:
         function: peer-performance-edit
+    - key: my-satisfaction-rating
+      name: Satisfaction Rating
+      description: How would you rate your satisfaction for this issue?
+      type: object
+      formatter:
+        expression: '`${value.mySatisfactionRating}`'
+      function: my-satisfaction-view
+      edit:
+        function: my-satisfaction-edit
   function:
     - key: resolver
       handler: index.handler
@@ -48,6 +57,10 @@ modules:
       handler: peerRatedPerformance.renderPerformanceFieldEdit
     - key: peer-performance-view
       handler: peerRatedPerformance.renderPerformanceFieldView
+    - key: my-satisfaction-edit
+      handler: satisfaction.renderSatisfactionFieldEdit
+    - key: my-satisfaction-view
+      handler: satisfaction.renderSatisfactionFieldView
 resources:
   - key: main
     path: static/manager-dashboard/build
