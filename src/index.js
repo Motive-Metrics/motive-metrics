@@ -6,6 +6,7 @@ import { getPeerAssessedPerformanceRatings, getAllAveragePerformance } from './p
 import { getSatisfactionRatingsData, getAllAverageSatisfaction } from './satisfaction';
 import { getMotivationRatings, getAllAverageMotivation } from './motivation';
 import { storePersonalityResults, getAllPersonalityResults } from './personality';
+import { getSatisfactionRatingsData } from './satisfaction'
 
 const resolver = new Resolver();
 
@@ -82,12 +83,6 @@ resolver.define('getMyPersonalityResults', async (req) => {
 
 resolver.define('getAllPersonalityResults', async (req) => {
     return await getAllPersonalityResults(req);
-});
-
-
-resolver.define('getSatisfactionRatingsData', async (req) => {
-    const performanceData = await getSatisfactionRatingsData(req);
-    return performanceData;
 });
 
 export const getCustomFieldID = async function (data, targetProperty) {

@@ -12,7 +12,7 @@ import Motivation from './Components/Motivation';
 import PersonalityPage from './Components/PersonalityPage';
 import PersonalityTest from './Components/PersonalityTest';
 import Performance from './Components/Performance';
-import PerformanceSatisfactionBarChart from './Components/PerformanceSatisfactionBarChart';
+import SatisfactionPieChart from './Components/SatisfactionPieChart';
 
 function App() {
     const theme = createTheme({

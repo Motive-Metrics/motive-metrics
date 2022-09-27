@@ -11,11 +11,10 @@ function SatisfactionPieChart() {
 
     const SatisfactionPieChartLabels = ['Bad', 'Somewhat Bad', 'Okay', 'Somewhat Good', 'Good'];
     const SatisfactionPieChartTitle = 'Satisfaction Ratings';
-    console.log("here");
 
     return (
         // Ideally the styling should be in a file, but who likes creating CSS files?
-        <div style="margin: auto; padding: 10px; width: 50%; height: 50%">
+        <div style={{ margin: "auto", padding: "10px", width: "50%", height: "50%" }}>
             <PieChart
                 labels={SatisfactionPieChartLabels}
                 title={SatisfactionPieChartTitle}
