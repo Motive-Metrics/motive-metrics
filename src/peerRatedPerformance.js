@@ -208,7 +208,6 @@ export const getPeerAssessedPerformanceRatings = async function (req) {
     for (var issue of data.issues) {
         if ( issue.fields[customFieldID] && issue.fields[customFieldID].peerAssessedPerformanceRating ) {
             if (projectId == issue.fields.project.id) {
-                console.log("found an issue with matching project id");
                 for (var rating of issue.fields[customFieldID].peerAssessedPerformanceRating ) { 
                     switch (rating) {
                         case 'Bad':

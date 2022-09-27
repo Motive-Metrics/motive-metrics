@@ -22,6 +22,28 @@ resolver.define('getPeerAssessedPerformanceRatings', async (req) => {
     return peerAssessedPerformanceData;
 });
 
+resolver.define('getSelfDataEmptyStatus', async (req) => {
+    const performanceData = await getPerformanceRatingsData(req);
+    var isEmpty = true;
+    for (let i = 0; i < performanceData.length; i++) {
+        if (performanceData[i] != 0) {
+            isEmpty = false;
+        }
+    }
+    return isEmpty;
+});
+
+resolver.define('getPeerDataEmptyStatus', async (req) => {
+    const performanceData = await getPerformanceRatingsData(req);
+    var isEmpty = true;
+    for (let i = 0; i < performanceData.length; i++) {
+        if (performanceData[i] != 0) {
+            isEmpty = false;
+        }
+    }
+    return isEmpty;
+});
+
 resolver.define('getMotivation', async (req) => {
     const motivationsCount = await getMotivationRatings(req);
     return motivationsCount;
