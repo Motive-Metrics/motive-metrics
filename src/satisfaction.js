@@ -62,7 +62,7 @@ export const getSatisfactionRatingsData = async function (req) {
 
     var issueSatisfaction = [];
     for (var issue of data.issues) {
-        if ( issue.fields[customFieldID].mySatisfactionRating ) {
+        if ( issue.fields[customFieldID] && issue.fields[customFieldID].mySatisfactionRating ) {
             issueSatisfaction.push(issue.fields[customFieldID].mySatisfactionRating);
         };
     }

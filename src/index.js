@@ -4,6 +4,7 @@ import api, {route} from '@forge/api'
 import {getPerformanceRatingsData} from './selfPerformance';
 import { getPeerAssessedPerformanceRatings } from './peerRatedPerformance';
 import {getMotivationRatings} from './motivation';
+import { getSatisfactionRatingsData } from './satisfaction';
 
 const resolver = new Resolver();
 
