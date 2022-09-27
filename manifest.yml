@@ -24,6 +24,15 @@ modules:
       function: view-motivation
       edit:
         function: edit-motivation
+    - key: peer-assessed-performance-rating
+      name: Peer Assessed Performance Rating
+      description: How would you rate the assignee's performance for this issue?
+      type: object
+      formatter:
+        expression: "'`${value.accountId}` `${value.peerAssessedPerformanceRating}`'"
+      function: peer-performance-view
+      edit:
+        function: peer-performance-edit
     - key: my-satisfaction-rating
       name: Satisfaction Rating
       description: How would you rate your satisfaction for this issue?
@@ -37,13 +46,17 @@ modules:
     - key: resolver
       handler: index.handler
     - key: my-performance-edit
-      handler: performance.renderPerformanceFieldEdit
+      handler: selfPerformance.renderPerformanceFieldEdit
     - key: my-performance-view
-      handler: performance.renderPerformanceFieldView
+      handler: selfPerformance.renderPerformanceFieldView
     - key: view-motivation
       handler: motivation.renderViewMotivation
     - key: edit-motivation
       handler: motivation.renderEditMotivation
+    - key: peer-performance-edit
+      handler: peerRatedPerformance.renderPerformanceFieldEdit
+    - key: peer-performance-view
+      handler: peerRatedPerformance.renderPerformanceFieldView
     - key: my-satisfaction-edit
       handler: satisfaction.renderSatisfactionFieldEdit
     - key: my-satisfaction-view
@@ -56,6 +69,7 @@ app:
 permissions:
   scopes:
     - read:jira-work
+    - write:jira-work
   content:
     styles:
       - unsafe-inline
