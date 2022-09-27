@@ -12,7 +12,7 @@ function Motivation() {
 
   useEffect(() => {
     console.log("Motivation.js useEffect is being called");
-    invoke("getMotivation", { example: "my-invoke-variable" }).then(setData);
+    invoke("getMotivation").then(setData);
     console.log("Motivation.js useEffect is being called after invoke");
     console.log("Motivation.js useEffect data: ", data);
   }, []);
@@ -69,20 +69,21 @@ function Motivation() {
 
   const motivatorLabels = [];
   const motivatorDataPoints = [];
-
-  for (const property in data.motivators) {
-    motivatorLabels.push(motivatorsLabelEnum.property); // push the label of motivators from enum
-    motivatorDataPoints.push(data[`${property}`]); // push the count of motivators from data
-  }
-
   const deMotivatorLabels = [];
   const deMotivatorDataPoints = [];
 
-  for (const property in data.deMotivators) {
-    deMotivatorLabels.push(deMotivatorsLabelEnum.property); // push the label of de-motivators from enum
-    deMotivatorDataPoints.push(data[`${property}`]); // push the count of de-motivators from data
-  }
+  if (data != null) {
+    for (const property in data.motivators) {
+      //console.log(property, data.motivators[property]);
+      motivatorLabels.push(motivatorsLabelEnum[`${property}`]); // push the label of motivators from enum
+      motivatorDataPoints.push(data.motivators[`${property}`]); // push the count of motivators from data
+    }
 
+    for (const property in data.deMotivators) {
+      deMotivatorLabels.push(deMotivatorsLabelEnum[`${property}`]); // push the label of de-motivators from enum
+      deMotivatorDataPoints.push(data.deMotivators[`${property}`]); // push the count of de-motivators from data
+    }
+  }
   // radar chart colours
   const borderColour = "rgba(0, 82, 204)";
   const backgroundColour = "rgba(179, 212, 255)";
