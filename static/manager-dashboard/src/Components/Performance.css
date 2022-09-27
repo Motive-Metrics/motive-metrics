@@ -1,0 +1,12 @@
+.row {
+    display: flex;
+    margin-bottom: 5%;
+  }
+  
+  .column {
+    flex: 50%;
+  }
+
+  .h3-text {
+    text-align: center;
+  }

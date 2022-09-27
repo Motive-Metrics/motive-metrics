@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
 import PieChart from '../shared/PieChart';
+import './Performance.css';
 
 function Performance() {
     const [selfAssessedPerformanceData, setSelfAssessedPerformanceData] = useState(null);
@@ -41,8 +42,27 @@ function Performance() {
 
     return (
         <div>
-            {selfDataEmptyStatus ? selfPerformanceMessage : selfPerformancePieChart}
-            {peerDataEmptyStatus ? peerPerformanceMessage : peerPerformancePieChart}
+            <div class="row">
+                <div class="column">
+                    <h3 class="h3-text">SELF Assessed Performance Ratings</h3>
+                    {selfDataEmptyStatus ? selfPerformanceMessage : selfPerformancePieChart}
+                </div>
+                <div class="column">
+                    <h3 class="h3-text">PEER Assessed Performance Ratings</h3>
+                    {peerDataEmptyStatus ? peerPerformanceMessage : peerPerformancePieChart}
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <h3 class="h3-text">Performance Ratings</h3>
+                    {selfDataEmptyStatus ? selfPerformanceMessage : selfPerformancePieChart}
+                </div>
+                <div class="column">
+                    <h3 class="h3-text">SELF Assessed Performance vs Satisfaction</h3>
+                    {peerDataEmptyStatus ? peerPerformanceMessage : peerPerformancePieChart}
+                </div>
+            </div>
+            <br/>
         </div>
     );
 }
