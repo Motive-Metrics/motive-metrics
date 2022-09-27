@@ -173,7 +173,6 @@ export const getMotivationRatings = async function (req) {
     motivators: {},
     deMotivators: {},
   };
-  console.log("motivation count initialised: ", motivationsCount);
 
   for (var issue of data.issues) {
     //  Example: issueMotivationField  = {

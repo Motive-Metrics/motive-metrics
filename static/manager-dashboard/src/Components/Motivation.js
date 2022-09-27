@@ -11,7 +11,10 @@ function Motivation() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
+    console.log("Motivation.js useEffect is being called");
     invoke("getMotivation", { example: "my-invoke-variable" }).then(setData);
+    console.log("Motivation.js useEffect is being called after invoke");
+    console.log("Motivation.js useEffect data: ", data);
   }, []);
 
   /**
@@ -66,8 +69,6 @@ function Motivation() {
 
   const motivatorLabels = [];
   const motivatorDataPoints = [];
-
-  console.log("data: ", data); // data is empty here
 
   for (const property in data.motivators) {
     motivatorLabels.push(motivatorsLabelEnum.property); // push the label of motivators from enum
