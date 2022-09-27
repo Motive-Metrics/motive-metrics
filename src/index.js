@@ -49,6 +49,11 @@ resolver.define('getMotivation', async (req) => {
     return motivationsCount;
 });
 
+resolver.define('getSatisfactionRatingsData', async (req) => {
+    const satisfactionData = await getSatisfactionRatingsData(req);
+    return satisfactionData;
+});
+
 export const getCustomFieldID = async function (data, targetProperty) {
     for (var issue of data.issues) {
         for (var fieldName in issue.fields) {
