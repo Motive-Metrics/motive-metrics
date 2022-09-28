@@ -3,6 +3,8 @@ import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
 import {getPerformanceRatingsData} from './selfPerformance';
 import { getPeerAssessedPerformanceRatings } from './peerRatedPerformance';
+import {getMotivationRatings} from './motivation';
+import { getSatisfactionRatingsData } from './satisfaction';
 import {getMotivationRatings, getAllAverageMotivation} from './motivation';
 import { storePersonalityResults, getAllPersonalityResults } from './personality';
 
@@ -48,6 +50,11 @@ resolver.define('getPeerDataEmptyStatus', async (req) => {
 resolver.define('getMotivation', async (req) => {
     const motivationsCount = await getMotivationRatings(req);
     return motivationsCount;
+});
+
+resolver.define('getSatisfactionRatingsData', async (req) => {
+    const satisfactionData = await getSatisfactionRatingsData(req);
+    return satisfactionData;
 });
 
 resolver.define('getAllAverageMotivation', async (req) => {
