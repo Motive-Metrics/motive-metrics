@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-const questions = require('../questions.json'); //TODO: I commited this for ease of development, change to questions.json
+const questions = require('../temp.json'); //TODO: I commited this for ease of development, change to questions.json
 
 function PersonalityTest() {
     console.log(questions);
@@ -78,10 +78,10 @@ function PersonalityTest() {
                 {currentIndex > 0 &&
                     <Button id="previous" onClick={previousQuestion} variant="outlined">Previous</Button>
                 }
-                {currentIndex < 119 &&
+                {currentIndex < questions.length - 1 &&
                     <Button id="next" onClick={nextQuestion} variant="contained">Next</Button>
                 }
-                {currentIndex === 119 && //TODO: I commited this for ease of development, change to === 
+                {currentIndex === questions.length - 1 &&
                     <Button id="submit" onClick={submit} variant="contained">Submit</Button>
                 }
             </Stack>
