@@ -159,8 +159,6 @@ const EditMotivation = () => {
  * @returns {Object} motivators and de-motivators count as nested object
  */
 export const getMotivationRatings = async function (req) {
-  console.log("getMotivationRatings is being called"); // not calling???
-
   var jql = `project in (${req.context.extension.project.key})`;
   const response = await api
     .asApp()
@@ -210,7 +208,6 @@ export const getMotivationRatings = async function (req) {
     }
   }
 
-  console.log("motivationCount", motivationsCount);
   // Example: motivationsCount = { motivators: {m1: 1, m2: 2, m3: 1}, deMotivators:{d1:6, d2: 1}}
   return motivationsCount;
 };
