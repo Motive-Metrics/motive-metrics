@@ -9,6 +9,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ResponsiveAppBar from './shared/ResponsiveAppBar';
 import Motivation from './Components/Motivation';
+import PersonalityPage from './Components/PersonalityPage';
+import PersonalityTest from './Components/PersonalityTest';
 import Performance from './Components/Performance';
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
                 <ResponsiveAppBar />
                 <Routes>
                     <Route path="/motivation" element={<Motivation/>}/>
+                    <Route path="/personality" element={<PersonalityPage/>}/>
+                    <Route path="/test" element={<PersonalityTest/>}/>
                     <Route path="/performance" element={<Performance/>}/>
                 </Routes>
             </Router>

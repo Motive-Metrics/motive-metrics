@@ -49,6 +49,25 @@ resolver.define('getMotivation', async (req) => {
     return motivationsCount;
 });
 
+resolver.define('getAllAverageMotivation', async (req) => {
+    const averageMotivation = await getAllAverageMotivation(req);
+    return averageMotivation;
+});
+
+
+resolver.define('storePersonalityResults', async (req) => {
+    await storePersonalityResults(req);
+});
+
+resolver.define('getMyPersonalityResults', async (req) => {
+    return await getMyPersonalityResults(req);
+});
+
+resolver.define('getAllPersonalityResults', async (req) => {
+    return await getAllPersonalityResults(req);
+});
+
+
 export const getCustomFieldID = async function (data, targetProperty) {
     for (var issue of data.issues) {
         for (var fieldName in issue.fields) {
