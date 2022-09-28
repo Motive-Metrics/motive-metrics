@@ -1,9 +1,10 @@
 import Resolver from '@forge/resolver';
 import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
-import {getPerformanceRatingsData} from './performance';
-import {getMotivationRatings, getAllAverageMotivation} from './motivation';
-import {storePersonalityResults, getAllPersonalityResults} from './personality';
+import {getPerformanceRatingsData} from './selfPerformance';
+import { getPeerAssessedPerformanceRatings } from './peerRatedPerformance';
+import {getMotivationRatings} from './motivation';
+
 const resolver = new Resolver();
 
 resolver.define('getText', async (req) => {
@@ -11,9 +12,36 @@ resolver.define('getText', async (req) => {
     return 'Hello, world!!!!!!';
 });
 
-resolver.define('getPerformanceRatingsData', async (req) => {
+resolver.define('getSelfAssessedPerformanceRatings', async (req) => {
     const performanceData = await getPerformanceRatingsData(req);
     return performanceData;
+});
+
+resolver.define('getPeerAssessedPerformanceRatings', async (req) => {
+    const peerAssessedPerformanceData = await getPeerAssessedPerformanceRatings(req);
+    return peerAssessedPerformanceData;
+});
+
+resolver.define('getSelfDataEmptyStatus', async (req) => {
+    const performanceData = await getPerformanceRatingsData(req);
+    var isEmpty = true;
+    for (let i = 0; i < performanceData.length; i++) {
+        if (performanceData[i] != 0) {
+            isEmpty = false;
+        }
+    }
+    return isEmpty;
+});
+
+resolver.define('getPeerDataEmptyStatus', async (req) => {
+    const performanceData = await getPerformanceRatingsData(req);
+    var isEmpty = true;
+    for (let i = 0; i < performanceData.length; i++) {
+        if (performanceData[i] != 0) {
+            isEmpty = false;
+        }
+    }
+    return isEmpty;
 });
 
 resolver.define('getMotivation', async (req) => {

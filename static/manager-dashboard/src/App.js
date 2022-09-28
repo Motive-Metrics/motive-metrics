@@ -9,10 +9,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ResponsiveAppBar from './shared/ResponsiveAppBar';
 import Motivation from './Components/Motivation';
-import PerformancePieChart from './Components/PerformancePieChart';
-import PerformanceSatisfactionBarChart from './Components/PerformanceSatisfactionBarChart';
 import PersonalityPage from './Components/PersonalityPage';
 import PersonalityTest from './Components/PersonalityTest';
+import Performance from './Components/Performance';
 
 function App() {
     const theme = createTheme({
@@ -32,9 +31,9 @@ function App() {
                 <ResponsiveAppBar />
                 <Routes>
                     <Route path="/motivation" element={<Motivation/>}/>
-                    <Route path="/performance" element={<PerformancePieChart/>}/>
                     <Route path="/personality" element={<PersonalityPage/>}/>
                     <Route path="/test" element={<PersonalityTest/>}/>
+                    <Route path="/performance" element={<Performance/>}/>
                 </Routes>
             </Router>
         </ThemeProvider>
