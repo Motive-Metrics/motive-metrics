@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { invoke, view } from '@forge/bridge';
-const questions = require('../temp.json'); //TODO: I commited this for ease of development, change to === 
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+const questions = require('../temp.json'); //TODO: I commited this for ease of development, change to questions.json
 
 function PersonalityTest() {
+    console.log(questions);
+    const [fakeValue, setFakeValue] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [results, setResult] = useState(null);
     const values = {
@@ -13,22 +22,15 @@ function PersonalityTest() {
         5: 'Always'
     }
 
-    useEffect(() => {
-        if (questions[currentIndex].value) {
-            document.getElementById(values[questions[currentIndex].value]).checked = true;
-        }
-        
-    },[currentIndex]);
+    const answerPicked = (e) => {
+        questions[currentIndex].value = e.target.value;
+        setFakeValue(fakeValue + 1); // update state to force render
+    }
 
     const nextQuestion = () => {
-        const currentlySelected = document.querySelector('input[name="question"]:checked');
-        if (!currentlySelected) {
-            return;
+        if(questions[currentIndex].value) {
+            setCurrentIndex(currentIndex + 1);
         }
-        questions[currentIndex].value = currentlySelected.value;
-
-        currentlySelected.checked = false;
-        setCurrentIndex(currentIndex + 1);
     }
 
     const previousQuestion = () => {
@@ -36,11 +38,9 @@ function PersonalityTest() {
     }
 
     const submit = async () => {
-        const currentlySelected = document.querySelector('input[name="question"]:checked');
-        if (!currentlySelected) {
+        if(!questions[currentIndex].value) {
             return;
         }
-        questions[currentIndex].value = currentlySelected.value;
 
         const personality = {};
         for (const question of questions) {
@@ -54,37 +54,40 @@ function PersonalityTest() {
             personality[question.domain].facet = question.key === "+" ? value: - value;
         }
         const context = await view.getContext();
-        invoke('storePersonalityResults', { personality, accountId: context.accountId });
+        invoke('storePersonalityResults', { personality, accountId: context.accountId }).then(() => {
+            alert('Your results have been submitted');
+        })
     }
 
     return (
-        <div>
+        <Box paddingTop={2}>
             <h2>IPIP 120 Personality Test</h2>
             <h3>Question { currentIndex + 1 }</h3>
             <p> {questions[currentIndex].question } </p>
             <form id="form">
-                <input type="radio" name="question" value="1" id="Never"/>
-                <label for="Never">Never</label>
-                <input type="radio" name="question" value="2" id="Rarely"/>
-                <label for="Rarely">Rarely</label>
-                <input type="radio" name="question" value="3" id="Sometimes"/>
-                <label for="Sometimes">Sometimes</label>
-                <input type="radio" name="question" value="4" id="Often"/>
-                <label for="Often">Very Often</label>
-                <input type="radio" name="question" value="5" id="Always"/>
-                <label for="Always">Always</label>
+                <FormControl>
+                    <RadioGroup name="question" onChange={answerPicked}>
+                        <FormControlLabel value="1" control={<Radio id="Never" checked={questions[currentIndex].value === '1'}/> } label="Never" />
+                        <FormControlLabel value="2" control={<Radio id="Rarely" checked={questions[currentIndex].value === '2'} />} label="Rarely" />
+                        <FormControlLabel value="3" control={<Radio id="Sometimes" checked={questions[currentIndex].value === '3'} />} label="Sometimes" />
+                        <FormControlLabel value="4" control={<Radio id="Often" checked={questions[currentIndex].value === '4'} />} label="Very Often" />
+                        <FormControlLabel value="5" control={<Radio id="Always" checked={questions[currentIndex].value === '5'} />} label="Always" />
+                    </RadioGroup>
+                </FormControl>
             </form>
-            
-            {currentIndex > 0 &&
-                <button id="previous" onClick={previousQuestion}>Previous</button>
-            }
-            {currentIndex < 119 &&
-                <button id="next" onClick={nextQuestion}>Next</button>
-            }
-            {currentIndex < 119 && //TODO: I commited this for ease of development, change to === 
-                <button id="submit" onClick={submit}>Submit</button>
-            }
-        </div>
+
+            <Stack spacing={2} direction="row" marginTop={1}>
+                {currentIndex > 0 &&
+                    <Button id="previous" onClick={previousQuestion} variant="outlined">Previous</Button>
+                }
+                {currentIndex < questions.length - 1 &&
+                    <Button id="next" onClick={nextQuestion} variant="contained">Next</Button>
+                }
+                {currentIndex === questions.length - 1 &&
+                    <Button id="submit" onClick={submit} variant="contained">Submit</Button>
+                }
+            </Stack>
+        </Box>
     );
 }
 

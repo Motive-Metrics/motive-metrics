@@ -3,7 +3,8 @@ import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
 import {getPerformanceRatingsData} from './selfPerformance';
 import { getPeerAssessedPerformanceRatings } from './peerRatedPerformance';
-import {getMotivationRatings} from './motivation';
+import {getMotivationRatings, getAllAverageMotivation} from './motivation';
+import { storePersonalityResults, getAllPersonalityResults } from './personality';
 
 const resolver = new Resolver();
 
