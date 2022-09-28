@@ -11,7 +11,7 @@ import ResponsiveAppBar from './shared/ResponsiveAppBar';
 import Motivation from './Components/Motivation';
 import PerformancePieChart from './Components/PerformancePieChart';
 import PerformanceSatisfactionBarChart from './Components/PerformanceSatisfactionBarChart';
-import PersonalityHomePage from './Components/PersonalityHomePage';
+import PersonalityPage from './Components/PersonalityPage';
 import PersonalityTest from './Components/PersonalityTest';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
                 <Routes>
                     <Route path="/motivation" element={<Motivation/>}/>
                     <Route path="/performance" element={<PerformancePieChart/>}/>
-                    <Route path="/personality" element={<PersonalityHomePage/>}/>
+                    <Route path="/personality" element={<PersonalityPage/>}/>
                     <Route path="/test" element={<PersonalityTest/>}/>
                 </Routes>
             </Router>

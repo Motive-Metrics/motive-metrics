@@ -32,7 +32,6 @@ export const getAllPersonalityResults = function(req) {
         for (const user of users) {
             let storedData = await storage.get(user.accountId);
             if (storedData != null) {
-                console.log('retrieved user: ' + user.accountId);
                 allUserPersonalities.push(storedData);
             }
         }

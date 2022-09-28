@@ -33,11 +33,11 @@ const EditMotivation = () => {
     return (
         <CustomFieldEdit onSubmit={onSubmit} header="Tell us about your motivation?" width="medium" >
             <Select label="Rate how motivated you were" name="myMotivationRating">
-                <Option label="Low" value="0" />
-                <Option label="Somewhat Low" value="1" />
-                <Option label="Okay" value="2" />
-                <Option label="Somewhat High" value="3" />
-                <Option label="High" value="4" />
+                <Option label="Low" value="Low" />
+                <Option label="Somewhat Low" value="Somewhat Low" />
+                <Option label="Okay" value="Okay" />
+                <Option label="Somewhat High" value="Somewhat High" />
+                <Option label="High" value="High" />
             </Select>
         </CustomFieldEdit>
     );
@@ -73,15 +73,25 @@ export const getAllAverageMotivation = async function(req) {
 
     const sumMotivationRatings = {};
     const frequencyMotivationRatings = {};
+    const values = {
+      "Low": 0,
+      "Somewhat Low": 1,
+      "Okay": 2,
+      "Somewhat High": 3,
+      "High": 4,
+    };
+
     for (let issue of data.issues) {
         let issueMotivationField = issue.fields[`${customFieldID}`];
         let assignee = issue.fields.assignee;
         if (issueMotivationField != null && issueMotivationField.hasOwnProperty('myMotivationRating') && assignee != null) {
             if (!sumMotivationRatings.hasOwnProperty(assignee.accountId)) {
+                console.log('Assignee: ' + assignee.accountId);
                 sumMotivationRatings[assignee.accountId] = 0;
                 frequencyMotivationRatings[assignee.accountId] = 0;
             }
-            sumMotivationRatings[assignee.accountId] += parseInt(issueMotivationField.myMotivationRating);
+            
+            sumMotivationRatings[assignee.accountId] += values[issueMotivationField.myMotivationRating];
             frequencyMotivationRatings[assignee.accountId] += 1;
         }
     }

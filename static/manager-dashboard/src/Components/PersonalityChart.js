@@ -1,29 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
 import ScatterChart from '../shared/ScatterChart';
+import './PersonalityChart.css';
 
-function PersonalityChart() {
-    const [domain, setDomain] = useState('Neuroticism');
+function PersonalityChart({domain}) {
     const [dataPoints, setDataPoints] = useState([]);
-    let users;
-    let averageMotivations;
+    const [users, setUsers] = useState(null);
+    const [averageMotivations, setAverageMotivations] = useState(null);
     useEffect(() => {
         const fetchMotivation = async () => {
-            users = await invoke('getAllPersonalityResults');
-            averageMotivations = await invoke('getAllAverageMotivation');
-            for (const property in users) {
-                console.log(property + ': ' + users[property].accountId);
-            }
-            for (const property in averageMotivations) {
-                console.log(property + ': ' + averageMotivations[property]);
-            }
+            const users = await invoke('getAllPersonalityResults');
+            setUsers(users);
+            const averageMotivations = await invoke('getAllAverageMotivation');
+            setAverageMotivations(averageMotivations);
             const data = [];
             for (const user of users) {
-                console.log(averageMotivations.hasOwnProperty(user.accountId));
                 if (user.hasOwnProperty('personality') && averageMotivations.hasOwnProperty(user.accountId)) {
-                    console.log('AverageMotivation: ' + averageMotivations[user.accountId]);
                     data.push({
-                        x: user.personality.Neuroticism.total,
+                        x: user.personality[domain].total,
                         y: averageMotivations[user.accountId]
                     });
                 }
@@ -33,6 +27,40 @@ function PersonalityChart() {
 
         fetchMotivation();
     }, []);
+
+    useEffect(() => {
+        console.log('Inside A');
+        if (averageMotivations != null) {
+            console.log('Inside B');
+            const data = [];
+            for (const user of users) {
+                if (user.hasOwnProperty('personality') && averageMotivations.hasOwnProperty(user.accountId)) {
+                    console.log('Inside C');
+                    if (user.personality.hasOwnProperty(domain)) {
+                        console.log('Inside D');
+                        data.push({
+                            x: user.personality[domain].total,
+                            y: averageMotivations[user.accountId]
+                        });
+                    }
+                }
+            }
+            setDataPoints(data);
+        }
+    }, [domain]);
+
+    const formatData = () => {
+        const data = [];
+        for (const user of users) {
+            if (user.hasOwnProperty('personality') && averageMotivations.hasOwnProperty(user.accountId)) {
+                data.push({
+                    x: user.personality[domain].total,
+                    y: averageMotivations[user.accountId]
+                });
+            }
+        }
+        setDataPoints(data);
+    }
 
     const data = {
         datasets: [
@@ -45,7 +73,7 @@ function PersonalityChart() {
     };
 
     return (
-        <div className='page'>
+        <div className='chart'>
             <ScatterChart
                 name='Personality'
                 data={data}
