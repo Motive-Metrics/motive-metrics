@@ -54,7 +54,9 @@ function PersonalityTest() {
             personality[question.domain].facet = question.key === "+" ? value: - value;
         }
         const context = await view.getContext();
-        invoke('storePersonalityResults', { personality, accountId: context.accountId });
+        invoke('storePersonalityResults', { personality, accountId: context.accountId }).then(() => {
+            alert('Your results have been submitted');
+        })
     }
 
     return (
