@@ -1,11 +1,10 @@
 import Resolver from '@forge/resolver';
 import ForgeUI, { render } from '@forge/ui';
 import api, {route} from '@forge/api'
-import {getPerformanceRatingsData} from './selfPerformance';
-import { getPeerAssessedPerformanceRatings } from './peerRatedPerformance';
-import {getMotivationRatings} from './motivation';
-import { getSatisfactionRatingsData } from './satisfaction';
-import {getMotivationRatings, getAllAverageMotivation} from './motivation';
+import { getPerformanceRatingsData } from './selfPerformance';
+import { getPeerAssessedPerformanceRatings, getAllAveragePerformance } from './peerRatedPerformance';
+import { getSatisfactionRatingsData, getAllAverageSatisfaction } from './satisfaction';
+import { getMotivationRatings, getAllAverageMotivation } from './motivation';
 import { storePersonalityResults, getAllPersonalityResults } from './personality';
 
 const resolver = new Resolver();
@@ -47,9 +46,20 @@ resolver.define('getPeerDataEmptyStatus', async (req) => {
     return isEmpty;
 });
 
+resolver.define('getAllAveragePerformance', async (req) => {
+    const averagePerformance = await getAllAveragePerformance(req);
+    return averagePerformance;
+});
+
 resolver.define('getMotivation', async (req) => {
     const motivationsCount = await getMotivationRatings(req);
     return motivationsCount;
+});
+
+
+resolver.define('getAllAverageMotivation', async (req) => {
+    const averageMotivation = await getAllAverageMotivation(req);
+    return averageMotivation;
 });
 
 resolver.define('getSatisfactionRatingsData', async (req) => {
@@ -57,11 +67,10 @@ resolver.define('getSatisfactionRatingsData', async (req) => {
     return satisfactionData;
 });
 
-resolver.define('getAllAverageMotivation', async (req) => {
-    const averageMotivation = await getAllAverageMotivation(req);
-    return averageMotivation;
+resolver.define('getAllAverageSatisfaction', async (req) => {
+    const averageSatisfaction = await getAllAverageSatisfaction(req);
+    return averageSatisfaction;
 });
-
 
 resolver.define('storePersonalityResults', async (req) => {
     await storePersonalityResults(req);
