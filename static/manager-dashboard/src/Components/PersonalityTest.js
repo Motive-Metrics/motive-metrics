@@ -50,8 +50,8 @@ function PersonalityTest() {
             }
             
             const value = parseInt(question.value);
-            personality[question.domain].total += question.key === "+" ? value: - value;
-            personality[question.domain].facet = question.key === "+" ? value: - value;
+            personality[question.domain].total += question.key === "+" ? value: 6 - value;
+            personality[question.domain].facet += question.key === "+" ? value: 6 - value;
         }
         const context = await view.getContext();
         invoke('storePersonalityResults', { personality, accountId: context.accountId }).then(() => {
