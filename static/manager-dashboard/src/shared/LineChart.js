@@ -23,7 +23,7 @@ ChartJS.register(
   Legend
 );
 
-const Chart = (props) => {
+const LineChart = (props) => {
   
   const options = {
       responsive: true,
@@ -35,18 +35,7 @@ const Chart = (props) => {
     };
     
   const labels = props.xAxis;
-  const data = {
-      labels,
-      datasets: [
-          {
-          label: 'Dataset 1',
-          data: labels.map(() => Math.floor(Math.random() * 1000)),
-          borderColor: props.colour,
-          backgroundColor: props.colour,
-          },
-      ],
-  };
-  return <Line className="Chart" options={options} data={data} />;
+  return <Line className="Chart" options={options} data={props.data} />;
 }
 
-export default Chart;
+export default LineChart;

@@ -4,6 +4,9 @@ import api, {route} from '@forge/api'
 import {getPerformanceRatingsData} from './selfPerformance';
 import { getPeerAssessedPerformanceRatings } from './peerRatedPerformance';
 import {getMotivationRatings} from './motivation';
+import { getSatisfactionRatingsData } from './satisfaction';
+import {getMotivationRatings, getAllAverageMotivation} from './motivation';
+import { storePersonalityResults, getAllPersonalityResults } from './personality';
 
 const resolver = new Resolver();
 
@@ -48,6 +51,30 @@ resolver.define('getMotivation', async (req) => {
     const motivationsCount = await getMotivationRatings(req);
     return motivationsCount;
 });
+
+resolver.define('getSatisfactionRatingsData', async (req) => {
+    const satisfactionData = await getSatisfactionRatingsData(req);
+    return satisfactionData;
+});
+
+resolver.define('getAllAverageMotivation', async (req) => {
+    const averageMotivation = await getAllAverageMotivation(req);
+    return averageMotivation;
+});
+
+
+resolver.define('storePersonalityResults', async (req) => {
+    await storePersonalityResults(req);
+});
+
+resolver.define('getMyPersonalityResults', async (req) => {
+    return await getMyPersonalityResults(req);
+});
+
+resolver.define('getAllPersonalityResults', async (req) => {
+    return await getAllPersonalityResults(req);
+});
+
 
 export const getCustomFieldID = async function (data, targetProperty) {
     for (var issue of data.issues) {

@@ -1,0 +1,14 @@
+.row {
+    display: flex;
+    margin-bottom: 5%;
+  }
+  
+  .column {
+    flex: 50%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+  }
+
+  .h3-text {
+    text-align: center;
+  }
