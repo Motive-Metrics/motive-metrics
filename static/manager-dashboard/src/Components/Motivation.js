@@ -86,7 +86,7 @@ function Motivation() {
   }
   // radar chart colours
   const borderColour = "rgba(0, 82, 204)";
-  const backgroundColour = "rgba(179, 212, 255)";
+  const backgroundColour = "rgba(179, 212, 255, 0.5)";
 
   return (
     <div className="page">
