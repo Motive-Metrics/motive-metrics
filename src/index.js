@@ -1,12 +1,14 @@
-import Resolver from '@forge/resolver';
-import ForgeUI, { render } from '@forge/ui';
-import api, {route} from '@forge/api'
-import {getPerformanceRatingsData} from './selfPerformance';
-import { getPeerAssessedPerformanceRatings } from './peerRatedPerformance';
-import {getMotivationRatings} from './motivation';
-import { getSatisfactionRatingsData } from './satisfaction';
-import {getMotivationRatings, getAllAverageMotivation} from './motivation';
-import { storePersonalityResults, getAllPersonalityResults } from './personality';
+import Resolver from "@forge/resolver";
+import ForgeUI, { render } from "@forge/ui";
+import api, { route } from "@forge/api";
+import { getPerformanceRatingsData } from "./selfPerformance";
+import { getPeerAssessedPerformanceRatings } from "./peerRatedPerformance";
+import { getSatisfactionRatingsData } from "./satisfaction";
+import { getMotivationRatings, getAllAverageMotivation } from "./motivation";
+import {
+  storePersonalityResults,
+  getAllPersonalityResults,
+} from "./personality";
 
 const resolver = new Resolver();
 

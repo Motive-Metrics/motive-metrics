@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { invoke } from "@forge/bridge";
 import RadarChart from "../shared/RadarChart";
 import "./Motivation.css";
+import { Grid, Card, CardHeader } from "@mui/material";
 
 /**
  * Motivation page in manager dashboard.
@@ -89,22 +90,41 @@ function Motivation() {
   const backgroundColour = "rgba(179, 212, 255, 0.5)";
 
   return (
-    <div className="page">
-      <RadarChart
-        name="Motivation"
-        labels={motivatorLabels}
-        dataPoints={motivatorDataPoints}
-        borderColour={borderColour}
-        backgroundColour={backgroundColour}
-      />
-      <RadarChart
-        name="De-motivation"
-        labels={deMotivatorLabels}
-        dataPoints={deMotivatorDataPoints}
-        borderColour={borderColour}
-        backgroundColour={backgroundColour}
-      />
-    </div>
+    <Grid container spacing={2} className="page">
+      <Grid item xs={12}>
+        <Card
+          variant="outlined"
+          className="card-graph"
+          sx={{ borderRadius: 2 }}
+        >
+          <CardHeader title={"Motivators"} />
+          <RadarChart
+            name="Motivators"
+            labels={motivatorLabels}
+            dataPoints={motivatorDataPoints}
+            borderColour={borderColour}
+            backgroundColour={backgroundColour}
+          />
+        </Card>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Card
+          variant="outlined"
+          className="card-graph"
+          sx={{ borderRadius: 2 }}
+        >
+          <CardHeader title={"De-Motivators"} />
+          <RadarChart
+            name="De-Motivators"
+            labels={deMotivatorLabels}
+            dataPoints={deMotivatorDataPoints}
+            borderColour={borderColour}
+            backgroundColour={backgroundColour}
+          />
+        </Card>
+      </Grid>
+    </Grid>
   );
 }
 
