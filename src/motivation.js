@@ -160,6 +160,7 @@ const EditMotivation = () => {
  */
 export const getMotivationRatings = async function (req) {
   var jql = `project in (${req.context.extension.project.key})`;
+  var projectId = req.context.extension.project.id;
   const response = await api
     .asApp()
     .requestJira(route`/rest/api/3/search?${jql}`);
@@ -173,6 +174,11 @@ export const getMotivationRatings = async function (req) {
   };
 
   for (var issue of data.issues) {
+    // skip if issue's project id not the same
+    if (projectId != issue.fields.project.id) {
+      continue;
+    }
+
     //  Example: issueMotivationField  = {
     //   myMotivationRating: 'Low',
     //   motivators: [ 'm1', 'm2', 'm3' ],
