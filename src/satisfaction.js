@@ -91,6 +91,48 @@ export const getSatisfactionRatingsData = async function (req) {
     return satisfactionData;
 };
 
+
+export const getAllAverageSatisfaction = async function(req) {
+    let jql = `project in (${req.context.extension.project.key})`;
+    var projectId = req.context.extension.project.id;
+    const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
+    const data = await response.json();
+
+    const customFieldID = await getCustomFieldID(data, 'mySatisfactionRating');
+
+    const sumSatisfactionRatings = {};
+    const frequencySatisfactionRatings = {};
+    const values = {
+        "Bad": 0,
+        "Somewhat Bad": 1,
+        "Okay": 2,
+        "Somewhat Good": 3,
+        "Good": 4,
+    };
+
+    for (let issue of data.issues) {
+        if (projectId == issue.fields.project.id) {
+            let issueSatisfactionField = issue.fields[`${customFieldID}`];
+            let assignee = issue.fields.assignee;
+            if (issueSatisfactionField != null && issueSatisfactionField.hasOwnProperty('mySatisfactionRating') && assignee != null) {
+                if (!sumSatisfactionRatings.hasOwnProperty(assignee.accountId)) {
+                    console.log('Assignee: ' + assignee.accountId);
+                    sumSatisfactionRatings[assignee.accountId] = 0;
+                    frequencySatisfactionRatings[assignee.accountId] = 0;
+                }
+                
+                sumSatisfactionRatings[assignee.accountId] += values[issueSatisfactionField.mySatisfactionRating];
+                frequencySatisfactionRatings[assignee.accountId] += 1;
+            }
+        }
+    }
+    const avgSatisfactionRatings = {};
+    for (const property in sumSatisfactionRatings) {
+        avgSatisfactionRatings[property] = sumSatisfactionRatings[property] / frequencySatisfactionRatings[property];
+    }
+    return avgSatisfactionRatings;
+}
+
 export const renderSatisfactionFieldView = render(<MySatisfactionView />);
 export const renderSatisfactionFieldEdit = render(<MySatisfactionEdit />);
 

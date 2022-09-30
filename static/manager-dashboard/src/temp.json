@@ -4,5 +4,29 @@
         "facet": "Anxiety",
         "domain": "Neuroticism",
         "key": "+"
+    },
+    {
+        "question": "I make friends easily",
+        "facet": "Friendliness",
+        "domain": "Extraversion",
+        "key": "+"
+    },
+    {
+        "question": "I have a vivid imagination",
+        "facet": "Imagination",
+        "domain": "Openness To Experience",
+        "key": "+"
+    },
+    {
+        "question": "I trust others",
+        "facet": "Trust",
+        "domain": "Agreeableness",
+        "key": "+"
+    },
+    {
+        "question": "I complete tasks successfully",
+        "facet": "Self-Efficacy",
+        "domain": "Conscientiousness",
+        "key": "+"
     }
 ]
