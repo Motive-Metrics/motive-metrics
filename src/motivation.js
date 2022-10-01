@@ -223,6 +223,7 @@ export const renderEditMotivation = render(<EditMotivation />);
 
 export const getAllAverageMotivation = async function (req) {
   let jql = `project in (${req.context.extension.project.key})`;
+  var projectId = req.context.extension.project.id;
   const response = await api
     .asApp()
     .requestJira(route`/rest/api/3/search?${jql}`);
@@ -241,22 +242,24 @@ export const getAllAverageMotivation = async function (req) {
   };
 
   for (let issue of data.issues) {
-    let issueMotivationField = issue.fields[`${customFieldID}`];
-    let assignee = issue.fields.assignee;
-    if (
-      issueMotivationField != null &&
-      issueMotivationField.hasOwnProperty("myMotivationRating") &&
-      assignee != null
-    ) {
-      if (!sumMotivationRatings.hasOwnProperty(assignee.accountId)) {
-        console.log("Assignee: " + assignee.accountId);
-        sumMotivationRatings[assignee.accountId] = 0;
-        frequencyMotivationRatings[assignee.accountId] = 0;
-      }
+    if (projectId == issue.fields.project.id) {
+      let issueMotivationField = issue.fields[`${customFieldID}`];
+      let assignee = issue.fields.assignee;
+      if (
+        issueMotivationField != null &&
+        issueMotivationField.hasOwnProperty("myMotivationRating") &&
+        assignee != null
+      ) {
+        if (!sumMotivationRatings.hasOwnProperty(assignee.accountId)) {
+          console.log("Assignee: " + assignee.accountId);
+          sumMotivationRatings[assignee.accountId] = 0;
+          frequencyMotivationRatings[assignee.accountId] = 0;
+        }
 
-      sumMotivationRatings[assignee.accountId] +=
-        values[issueMotivationField.myMotivationRating];
-      frequencyMotivationRatings[assignee.accountId] += 1;
+        sumMotivationRatings[assignee.accountId] +=
+          values[issueMotivationField.myMotivationRating];
+        frequencyMotivationRatings[assignee.accountId] += 1;
+      }
     }
   }
   const avgMotivationRatings = {};

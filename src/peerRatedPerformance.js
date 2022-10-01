@@ -236,5 +236,48 @@ export const getPeerAssessedPerformanceRatings = async function (req) {
     return performanceData;
 };
 
+export const getAllAveragePerformance = async function(req) {
+    let jql = `project in (${req.context.extension.project.key})`;
+    var projectId = req.context.extension.project.id;
+    const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
+    const data = await response.json();
+
+    const customFieldID = await getCustomFieldID(data, 'peerAssessedPerformanceRating');
+
+    const sumPerformanceRatings = {};
+    const frequencyPerformanceRatings = {};
+    const values = {
+      "Bad": 0,
+      "Somewhat Bad": 1,
+      "Okay": 2,
+      "Somewhat Good": 3,
+      "Good": 4,
+    };
+
+    for (let issue of data.issues) {
+        if (projectId == issue.fields.project.id) {
+            let issuePerformanceField = issue.fields[`${customFieldID}`];
+            let assignee = issue.fields.assignee;
+            if (issuePerformanceField != null && issuePerformanceField.hasOwnProperty('peerAssessedPerformanceRating') && assignee != null) {
+                if (!sumPerformanceRatings.hasOwnProperty(assignee.accountId)) {
+                    console.log('Performance - Assignee: ' + assignee.accountId);
+                    sumPerformanceRatings[assignee.accountId] = 0;
+                    frequencyPerformanceRatings[assignee.accountId] = 0;
+                }
+                for (var rating of issue.fields[customFieldID].peerAssessedPerformanceRating ) { 
+                    sumPerformanceRatings[assignee.accountId] += values[rating];
+                    frequencyPerformanceRatings[assignee.accountId] += 1;
+                }
+                console.log('Performance - Sum of Assignee: ' + sumPerformanceRatings[assignee.accountId]);
+            }
+        }
+    }
+    const avgPerformanceRatings = {};
+    for (const property in sumPerformanceRatings) {
+        avgPerformanceRatings[property] = sumPerformanceRatings[property] / frequencyPerformanceRatings[property];
+    }
+    return avgPerformanceRatings;
+}
+
 export const renderPerformanceFieldEdit = render(<PeerAssessedPerformanceEdit />);
 export const renderPerformanceFieldView = render(<PeerAssessedPerformanceView />);
