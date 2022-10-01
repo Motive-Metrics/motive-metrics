@@ -9,17 +9,17 @@ import ForgeUI, {
   CheckboxGroup,
   Checkbox,
   useState,
-} from "@forge/ui";
-import Resolver from "@forge/resolver";
-import api, { route } from "@forge/api";
-import { getCustomFieldID } from "./index";
+} from '@forge/ui';
+import Resolver from '@forge/resolver';
+import api, { route } from '@forge/api';
+import { getCustomFieldID } from './index';
 
 const ViewMotivation = () => {
   const {
     extensionContext: { fieldValue },
   } = useProductContext();
 
-  const output = fieldValue === null ? "None" : fieldValue.myMotivationRating;
+  const output = fieldValue === null ? 'None' : fieldValue.myMotivationRating;
   return (
     <CustomField>
       <Text>{output}</Text>
@@ -32,27 +32,27 @@ const ViewMotivation = () => {
  * @enum {string}
  */
 const motivatorsDescription = {
-  m1: "Rewards and incentives (e.g. scope for increased pay and benefits linked to performance)",
-  m2: "Development needs addressed (e.g. training opportunities to widen skills; opportunity to specialise)",
-  m3: "Variety of work (e.g. making good use of skills, being stretched)",
-  m4: "Career path (opportunity for advancement, promotion prospect, career planning)",
-  m5: "Empowerment/responsibility (where responsibility is assigned to the person not the task)",
-  m6: "Good management (senior management support, team-building, good communication)",
-  m7: "Sense of belonging/supportive relationships",
-  m8: "Work/life balance (flexibility in work times, caring manager/employer, work location)",
-  m9: "Working in successful company (e.g. financially stable)",
-  m10: "Employee participation/involvement/working with others",
-  m11: "Feedback",
+  m1: 'Rewards and incentives (e.g. scope for increased pay and benefits linked to performance)',
+  m2: 'Development needs addressed (e.g. training opportunities to widen skills; opportunity to specialise)',
+  m3: 'Variety of work (e.g. making good use of skills, being stretched)',
+  m4: 'Career path (opportunity for advancement, promotion prospect, career planning)',
+  m5: 'Empowerment/responsibility (where responsibility is assigned to the person not the task)',
+  m6: 'Good management (senior management support, team-building, good communication)',
+  m7: 'Sense of belonging/supportive relationships',
+  m8: 'Work/life balance (flexibility in work times, caring manager/employer, work location)',
+  m9: 'Working in successful company (e.g. financially stable)',
+  m10: 'Employee participation/involvement/working with others',
+  m11: 'Feedback',
   m12: "Recognition (for a high quality, good job done based on objective criteria – different to 'Rewards and incentives' which is about making sure that there are rewards available)",
-  m13: "Equity",
-  m14: "Trust/respect",
-  m15: "Technically challenging work",
-  m16: "Job security/stable environment",
-  m17: "Identify with the task (clear goals, personal interest, know purpose of task, how it fits in with whole, job satisfaction; producing identifiable piece of quality work)",
-  m18: "Autonomy (e.g. freedom to carry out tasks, allowing roles to evolve)",
-  m19: "Appropriate working conditions/environment/good equipment/tools/physical space/quiet",
-  m20: "Making a contribution/task significance (degree to which the job has a substantial impact on the lives or work of other people)",
-  m21: "Sufficient resources",
+  m13: 'Equity',
+  m14: 'Trust/respect',
+  m15: 'Technically challenging work',
+  m16: 'Job security/stable environment',
+  m17: 'Identify with the task (clear goals, personal interest, know purpose of task, how it fits in with whole, job satisfaction; producing identifiable piece of quality work)',
+  m18: 'Autonomy (e.g. freedom to carry out tasks, allowing roles to evolve)',
+  m19: 'Appropriate working conditions/environment/good equipment/tools/physical space/quiet',
+  m20: 'Making a contribution/task significance (degree to which the job has a substantial impact on the lives or work of other people)',
+  m21: 'Sufficient resources',
 };
 
 /**
@@ -60,21 +60,21 @@ const motivatorsDescription = {
  * @enum {string}
  */
 const deMotivatorsDescription = {
-  d1: "Risk",
-  d2: "Stress",
-  d3: "Inequity (e.g. recognition based on management intuition or personal preference)",
-  d4: "Interesting work going to other parties (e.g. outsourcing)",
-  d5: "Unfair reward system (e.g. management rewarded for organisational performance; company benefits based on company rank not merit)",
-  d6: "Lack of promotion opportunities/stagnation/career plateau/boring work/poor job-fit",
-  d7: "Poor communication (feedback deficiency/loss of direct contact with all levels of management)",
-  d8: "Uncompetitive pay/poor pay/unpaid overtime",
-  d9: "Unrealistic goals/phoney deadlines",
-  d10: "Bad relationship with users and colleagues",
-  d11: "Poor working environment (e.g. wrong staffing levels/unstable/insecure/lacking in investment and resources; being physically separated from team)",
-  d12: "Poor management (e.g. poorly conducted meetings that are a waste of time)",
-  d13: "Producing poor quality software (no sense of accomplishment)",
-  d14: "Poor cultural fit/stereotyping/role ambiguity",
-  d15: "Lack of influence/not involved in decision making/no voice",
+  d1: 'Risk',
+  d2: 'Stress',
+  d3: 'Inequity (e.g. recognition based on management intuition or personal preference)',
+  d4: 'Interesting work going to other parties (e.g. outsourcing)',
+  d5: 'Unfair reward system (e.g. management rewarded for organisational performance; company benefits based on company rank not merit)',
+  d6: 'Lack of promotion opportunities/stagnation/career plateau/boring work/poor job-fit',
+  d7: 'Poor communication (feedback deficiency/loss of direct contact with all levels of management)',
+  d8: 'Uncompetitive pay/poor pay/unpaid overtime',
+  d9: 'Unrealistic goals/phoney deadlines',
+  d10: 'Bad relationship with users and colleagues',
+  d11: 'Poor working environment (e.g. wrong staffing levels/unstable/insecure/lacking in investment and resources; being physically separated from team)',
+  d12: 'Poor management (e.g. poorly conducted meetings that are a waste of time)',
+  d13: 'Producing poor quality software (no sense of accomplishment)',
+  d14: 'Poor cultural fit/stereotyping/role ambiguity',
+  d15: 'Lack of influence/not involved in decision making/no voice',
 };
 
 const EditMotivation = () => {
@@ -166,7 +166,7 @@ export const getMotivationRatings = async function (req) {
     .requestJira(route`/rest/api/3/search?${jql}`);
   const data = await response.json();
 
-  const customFieldID = await getCustomFieldID(data, "motivationScore"); // motivationScore attr is used to find the field
+  const customFieldID = await getCustomFieldID(data, 'motivationScore'); // motivationScore attr is used to find the field
 
   var motivationsCount = {
     motivators: {},
@@ -229,15 +229,15 @@ export const getAllAverageMotivation = async function (req) {
     .requestJira(route`/rest/api/3/search?${jql}`);
   const data = await response.json();
 
-  const customFieldID = await getCustomFieldID(data, "motivationScore");
+  const customFieldID = await getCustomFieldID(data, 'motivationScore');
 
   const sumMotivationRatings = {};
   const frequencyMotivationRatings = {};
   const values = {
     Low: 0,
-    "Somewhat Low": 1,
+    'Somewhat Low': 1,
     Okay: 2,
-    "Somewhat High": 3,
+    'Somewhat High': 3,
     High: 4,
   };
 
@@ -247,11 +247,11 @@ export const getAllAverageMotivation = async function (req) {
       let assignee = issue.fields.assignee;
       if (
         issueMotivationField != null &&
-        issueMotivationField.hasOwnProperty("myMotivationRating") &&
+        issueMotivationField.hasOwnProperty('myMotivationRating') &&
         assignee != null
       ) {
         if (!sumMotivationRatings.hasOwnProperty(assignee.accountId)) {
-          console.log("Assignee: " + assignee.accountId);
+          console.log('Assignee: ' + assignee.accountId);
           sumMotivationRatings[assignee.accountId] = 0;
           frequencyMotivationRatings[assignee.accountId] = 0;
         }
