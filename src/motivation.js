@@ -56,7 +56,7 @@ const motivatorsDescription = {
 };
 
 /**
- * Description of de-motivators, to show in the list of checkboxes.
+ * Description of demotivators, to show in the list of checkboxes.
  * @enum {string}
  */
 const deMotivatorsDescription = {
@@ -130,7 +130,7 @@ const EditMotivation = () => {
       </CheckboxGroup>
 
       <CheckboxGroup
-        label="Select de-motivator(s) of this ticket (if any): "
+        label="Select demotivator(s) of this ticket (if any): "
         name="deMotivators"
       >
         <Checkbox value="d1" label={deMotivatorsDescription.d1} />
@@ -154,9 +154,9 @@ const EditMotivation = () => {
 };
 
 /**
- * Function to get the motivators and de-motivators count from custom fields for radar chart.
+ * Function to get the motivators and demotivators count from custom fields for radar chart.
  * @param {*} req
- * @returns {Object} motivators and de-motivators count as nested object
+ * @returns {Object} motivators and demotivators count as nested object
  */
 export const getMotivationRatings = async function (req) {
   var jql = `project in (${req.context.extension.project.key})`;

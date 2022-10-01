@@ -6,16 +6,13 @@ import { Grid, Card, CardHeader } from "@mui/material";
 
 /**
  * Motivation page in manager dashboard.
- * @returns {*} Component with two radar charts of motivators and de-motivators
+ * @returns {*} Component with two radar charts of motivators and demotivators
  */
 function Motivation() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    console.log("Motivation.js useEffect is being called");
     invoke("getMotivation").then(setData);
-    console.log("Motivation.js useEffect is being called after invoke");
-    console.log("Motivation.js useEffect data: ", data);
   }, []);
 
   /**
@@ -47,7 +44,7 @@ function Motivation() {
   };
 
   /**
-   * Title of de-motivators, to show in the radar chart.
+   * Title of demotivators, to show in the radar chart.
    * @enum {string}
    */
   const deMotivatorsLabelEnum = {
@@ -81,8 +78,8 @@ function Motivation() {
     }
 
     for (const property in data.deMotivators) {
-      deMotivatorLabels.push(deMotivatorsLabelEnum[`${property}`]); // push the label of de-motivators from enum
-      deMotivatorDataPoints.push(data.deMotivators[`${property}`]); // push the count of de-motivators from data
+      deMotivatorLabels.push(deMotivatorsLabelEnum[`${property}`]); // push the label of demotivators from enum
+      deMotivatorDataPoints.push(data.deMotivators[`${property}`]); // push the count of demotivators from data
     }
   }
   // radar chart colours
@@ -116,9 +113,9 @@ function Motivation() {
           className="card-graph"
           sx={{ borderRadius: 2 }}
         >
-          <CardHeader title={"De-Motivators"} />
+          <CardHeader title={"Demotivators"} />
           <RadarChart
-            name="De-Motivators"
+            name="Demotivators"
             labels={deMotivatorLabels}
             dataPoints={deMotivatorDataPoints}
             borderColour={demotBorderColour}
