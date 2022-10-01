@@ -6,7 +6,6 @@ import { getPeerAssessedPerformanceRatings, getAllAveragePerformance } from './p
 import { getSatisfactionRatingsData, getAllAverageSatisfaction } from './satisfaction';
 import { getMotivationRatings, getAllAverageMotivation } from './motivation';
 import { storePersonalityResults, getAllPersonalityResults } from './personality';
-import { getSatisfactionRatingsData } from './satisfaction'
 
 const resolver = new Resolver();
 
