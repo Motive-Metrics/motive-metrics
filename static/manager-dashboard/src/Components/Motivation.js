@@ -86,8 +86,10 @@ function Motivation() {
     }
   }
   // radar chart colours
-  const borderColour = "rgba(0, 82, 204)";
-  const backgroundColour = "rgba(179, 212, 255, 0.5)";
+  const motBorderColour = "rgb(54, 162, 235)"; // blue
+  const motBackgroundColour = "rgba(54, 162, 235, 0.2)";
+  const demotBorderColour = "rgb(255, 99, 132)"; // red
+  const demotBackgroundColour = "rgba(255, 99, 132, 0.2)";
 
   return (
     <Grid container spacing={2} className="page">
@@ -102,8 +104,8 @@ function Motivation() {
             name="Motivators"
             labels={motivatorLabels}
             dataPoints={motivatorDataPoints}
-            borderColour={borderColour}
-            backgroundColour={backgroundColour}
+            borderColour={motBorderColour}
+            backgroundColour={motBackgroundColour}
           />
         </Card>
       </Grid>
@@ -119,8 +121,8 @@ function Motivation() {
             name="De-Motivators"
             labels={deMotivatorLabels}
             dataPoints={deMotivatorDataPoints}
-            borderColour={borderColour}
-            backgroundColour={backgroundColour}
+            borderColour={demotBorderColour}
+            backgroundColour={demotBackgroundColour}
           />
         </Card>
       </Grid>
