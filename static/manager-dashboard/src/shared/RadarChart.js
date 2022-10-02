@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -7,10 +7,10 @@ import {
   Filler,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Radar } from 'react-chartjs-2';
+} from "chart.js";
+import { Radar } from "react-chartjs-2";
 
-import './Chart.css';
+import "./Chart.css";
 
 ChartJS.register(
   RadialLinearScale,
@@ -21,21 +21,38 @@ ChartJS.register(
   Legend
 );
 
-const RadarChart = ({name, labels, dataPoints, borderColour, backgroundColour}) => {
-      
+const RadarChart = ({
+  name,
+  labels,
+  dataPoints,
+  borderColour,
+  backgroundColour,
+}) => {
   const data = {
-      labels,
-      datasets: [
-          {
-          label: name,
-          data: dataPoints,
-          borderColor: borderColour,
-          backgroundColor: backgroundColour,
-          borderWidth: 2,
-          },
-      ],
+    labels,
+    datasets: [
+      {
+        label: name,
+        data: dataPoints,
+        borderColor: borderColour,
+        backgroundColor: backgroundColour,
+        borderWidth: 2,
+      },
+    ],
   };
-  return <Radar data={data}/>;
-}
+
+  const options = {
+    scales: {
+      r: {
+        beginAtZero: true,
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
+  };
+
+  return <Radar data={data} options={options} />;
+};
 
 export default RadarChart;

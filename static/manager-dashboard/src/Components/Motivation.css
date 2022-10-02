@@ -1,5 +1,8 @@
 .page {
-    padding: 2%;
-    width: 55%;
-    height: 55%;
+  max-width: 1000px;
+  margin-top: 20px;
+}
+
+.card-graph {
+  margin-top: 10px;
 }
