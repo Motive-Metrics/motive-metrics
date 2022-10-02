@@ -84,7 +84,6 @@ resolver.define('getAllPersonalityResults', async (req) => {
     return await getAllPersonalityResults(req);
 });
 
-
 export const getCustomFieldID = async function (data, targetProperty) {
     for (var issue of data.issues) {
         for (var fieldName in issue.fields) {

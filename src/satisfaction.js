@@ -55,38 +55,38 @@ const MySatisfactionEdit = () => {
 
 export const getSatisfactionRatingsData = async function (req) {
     var jql = `project in (${req.context.extension.project.key})`;
+    var projectId = req.context.extension.project.id;
     const response = await api.asApp().requestJira(route`/rest/api/3/search?${jql}`);
     const data = await response.json();
 
     const customFieldID = await getCustomFieldID(data, 'mySatisfactionRating');
 
-    var issueSatisfaction = [];
+    var satisfactionData = [0, 0, 0, 0, 0];
+
     for (var issue of data.issues) {
         if ( issue.fields[customFieldID] && issue.fields[customFieldID].mySatisfactionRating ) {
-            issueSatisfaction.push(issue.fields[customFieldID].mySatisfactionRating);
+            if (projectId == issue.fields.project.id) {
+                var rating = issue.fields[customFieldID].mySatisfactionRating;
+                switch (rating) {
+                    case 'Bad':
+                        satisfactionData[0] += 1;
+                        break;
+                    case 'Somewhat Bad':
+                        satisfactionData[1] += 1;
+                        break;
+                    case "Okay":
+                        satisfactionData[2] += 1;
+                        break;
+                    case "Somewhat Good":
+                        satisfactionData[3] += 1
+                        break;
+                    case "Good":
+                        satisfactionData[4] += 1
+                        break;
+                };
+            }
         };
     }
-
-    var satisfactionData = [0, 0, 0, 0, 0];
-    for (var rating of issueSatisfaction) {
-        switch (rating) {
-            case 'Bad':
-                satisfactionData[0] += 1;
-                break;
-            case 'Somewhat Bad':
-                satisfactionData[1] += 1;
-                break;
-            case "Okay":
-                satisfactionData[2] += 1;
-                break;
-            case "Somewhat Good":
-                satisfactionData[3] += 1
-                break;
-            case "Good":
-                satisfactionData[4] += 1
-                break;
-        };
-    };
 
     return satisfactionData;
 };
