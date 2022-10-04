@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-const questions = require('../temp.json'); //TODO: I commited this for ease of development, change to questions.json
+const questions = require('../questions.json'); //TODO: I commited this for ease of development, change to questions.json
 
 function PersonalityTest() {
     console.log(questions);
@@ -46,13 +46,18 @@ function PersonalityTest() {
         for (const question of questions) {
             if (!personality.hasOwnProperty(question.domain)) {
                 personality[question.domain] = {};
-                personality[question.domain].total = parseInt(0);
+                personality[question.domain].total = 0;
+                personality[question.domain].facets = {};
+            }
+            if (!personality[question.domain].facets.hasOwnProperty(question.facet)) {
+                personality[question.domain].facets[question.facet] = 0;
             }
             
             const value = parseInt(question.value);
-            personality[question.domain].total += question.key === "+" ? value: - value;
-            personality[question.domain].facet = question.key === "+" ? value: - value;
+            personality[question.domain].total += question.key === "+" ? value: 6 - value;
+            personality[question.domain].facets[question.facet] += question.key === "+" ? value: 6 - value;
         }
+        console.log(personality);
         const context = await view.getContext();
         invoke('storePersonalityResults', { personality, accountId: context.accountId }).then(() => {
             alert('Your results have been submitted');
