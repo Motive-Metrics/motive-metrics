@@ -28,29 +28,5 @@
         "facet": "Self-Efficacy",
         "domain": "Conscientiousness",
         "key": "+"
-    },
-    {
-        "question": "I get angry easily",
-        "facet": "Anger",
-        "domain": "Neuroticism",
-        "key": "+"
-    },
-    {
-        "question": "I love large parties",
-        "facet": "Gregariousness",
-        "domain": "Extraversion",
-        "key": "+"
-    },
-    {
-        "question": "I believe in the importance of art",
-        "facet": "Aesthetics",
-        "domain": "Openness To Experience",
-        "key": "+"
-    },
-    {
-        "question": "I use others for my own ends",
-        "facet": "Straightforwardness",
-        "domain": "Agreeableness",
-        "key": "-"
     }
 ]
