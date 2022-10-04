@@ -21,7 +21,7 @@ function PersonalityPage() {
                     {borderRadius: 2}
                 }>
                     <CardHeader
-                    title={`Personality Domain - ${domain}`}
+                    title={`Personality Dimension - ${domain}`}
                     />
                     <PersonalityChart domain={domain}/>
                 </Card>
@@ -35,7 +35,7 @@ function PersonalityPage() {
                 }>
                     <div className='control-panel'>
                         <FormControl className='domain' fullWidth>
-                            <InputLabel>Domain</InputLabel>
+                            <InputLabel>Dimension</InputLabel>
                             <Select
                                 value={domain}
                                 label='Domain'

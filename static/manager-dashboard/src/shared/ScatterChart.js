@@ -15,7 +15,24 @@ const ScatterChart = (props) => {
     const options = {
         scales: {
             y: {
-            beginAtZero: true,
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Average Score',
+                align: 'center'
+              }, 
+              min: 0,
+              max: 4
+            },
+            x: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Dimension Prevalence',
+                align: 'center'
+              }, 
+              min: 0,
+              max: 120
             },
         },
     };
