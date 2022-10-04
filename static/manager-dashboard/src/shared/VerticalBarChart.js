@@ -20,6 +20,7 @@ ChartJS.register(
 );
 
 const VerticalBarChart = (props) => {
+    const scales = props.scales != null ? props.scales : {};
     const options = {
         responsive: true,
         plugins: {
@@ -31,6 +32,7 @@ const VerticalBarChart = (props) => {
             text: props.text,
             },
         },
+        scales: scales
     };
 
     const labels = props.xAxisLabels;

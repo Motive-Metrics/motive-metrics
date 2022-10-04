@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Card, CardHeader, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 import PersonalityChart from './PersonalityChart';
+import DimensionsChart from './DimensionsChart';
 import './PersonalityPage.css';
 
 function PersonalityPage() {
     const [domain, setDomain] = useState('Neuroticism');
+    const [users, setUsers] = useState(null);
 
     const handleDomainChange = (event) => {
         setDomain(event.target.value);
@@ -23,7 +25,7 @@ function PersonalityPage() {
                     <CardHeader
                     title={`Personality Dimension - ${domain}`}
                     />
-                    <PersonalityChart domain={domain}/>
+                    <PersonalityChart domain={domain} users={users} setUsers={setUsers}/>
                 </Card>
             </Grid>
             <Grid item xs={4}>
@@ -49,6 +51,19 @@ function PersonalityPage() {
                             </Select>
                         </FormControl>
                     </div>
+                </Card>
+            </Grid>
+            <Grid item xs={12}>
+                <Card 
+                variant='outlined'
+                className='card-graph'
+                sx={
+                    {borderRadius: 2}
+                }>
+                    <CardHeader
+                    title="Users' Dimensions"
+                    />
+                    <DimensionsChart users={users} setUsers={setUsers} />
                 </Card>
             </Grid>
         </Grid>

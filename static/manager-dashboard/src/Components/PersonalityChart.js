@@ -3,11 +3,10 @@ import { invoke } from '@forge/bridge';
 import ScatterChart from '../shared/ScatterChart';
 import './PersonalityChart.css';
 
-function PersonalityChart({domain}) {
+function PersonalityChart({domain, users, setUsers}) {
     const [motivationPoints, setMotivationPoints] = useState([]);
     const [performancePoints, setPerformancePoints] = useState([]);
     const [satisfactionPoints, setSatisfactionPoints] = useState([]);
-    const [users, setUsers] = useState(null);
     const [averageMotivations, setAverageMotivations] = useState(null);
     const [averagePerformances, setAveragePerformances] = useState(null);
     const [averageSatisfactions, setAverageSatisfactions] = useState(null);
