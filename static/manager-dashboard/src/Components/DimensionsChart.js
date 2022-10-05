@@ -54,9 +54,9 @@ function DimensionsChart({users}) {
             backgroundColor: 'rgba(37, 88, 168, 0.5)',
         },
         {
-            label: 'Average (81 - 120)',
+            label: 'Above Average (81 - 120)',
             data: dataPoints[2],
-            backgroundColor: 'rgba(22, 52, 99, 0.5)',
+            backgroundColor: 'rgba(14, 33, 64, 0.5)',
         },
     ];
     
