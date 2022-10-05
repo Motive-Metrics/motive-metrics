@@ -252,7 +252,7 @@
         "key": "+"
     },
     {
-        "question": "I feel othersâ€™ emotions",
+        "question": "I feel others’ emotions",
         "facet": "Emotionality",
         "domain": "Openness To Experience",
         "key": "+"
@@ -294,7 +294,7 @@
         "key": "-"
     },
     {
-        "question": "I do more than whatâ€™s expected of me",
+        "question": "I do more than what’s expected of me",
         "facet": "Achivement Striving",
         "domain": "Conscientiousness",
         "key": "+"
@@ -510,7 +510,7 @@
         "key": "-"
     },
     {
-        "question": "I feel that Iâ€™m unable to deal with things",
+        "question": "I feel that I’m unable to deal with things",
         "facet": "Vulnerability",
         "domain": "Neuroticism",
         "key": "+"
@@ -528,7 +528,7 @@
         "key": "-"
     },
     {
-        "question": "I am not interested in other peopleâ€™s problems",
+        "question": "I am not interested in other people’s problems",
         "facet": "Tender-Mindedness",
         "domain": "Agreeableness",
         "key": "-"
@@ -588,7 +588,7 @@
         "key": "-"
     },
     {
-        "question": "I obstruct othersâ€™ plans",
+        "question": "I obstruct others’ plans",
         "facet": "Straightforwardness",
         "domain": "Agreeableness",
         "key": "-"
@@ -612,7 +612,7 @@
         "key": "-"
     },
     {
-        "question": "I donâ€™t understand people who get emotional",
+        "question": "I don’t understand people who get emotional",
         "facet": "Emotionality",
         "domain": "Openness To Experience",
         "key": "-"
